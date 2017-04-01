@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" ng-app='angularRoutingApp'>
+  <head>
+    <title>Chat Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--link rel="stylesheet" href="/css/bootstrap.min.css"-->
+    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.7/angular.min.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.3/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <!--script src="/js/bootstrap.min.js"></script-->
+    <!--script src="/js/angular.min.js"></script-->
+    <script src="/js/main.js"></script>
+    <style>
+      body {
+        padding-top: 60px;
+      }
+    </style>
+     <script>
+      function ChatController($scope) {
+        var socket = io.connect();
+
+        $scope.messages = [];
+        $scope.roster = [];
+        $scope.name = '';
+        $scope.text = '';
+
+        socket.on('connect', function () {
+          $scope.setName();
+        });
+
+        socket.on('message', function (msg) {
+          $scope.messages.push(msg);
+          $scope.$apply();
+        });
+
+        socket.on('roster', function (names) {
+          $scope.roster = names;
+          $scope.$apply();
+        });
+
+        $scope.send = function send() {
+          console.log('Sending message:', $scope.text);
+          socket.emit('message', $scope.text);
+          $scope.text = '';
+        };
+
+        $scope.setName = function setName() {
+          socket.emit('identify', $scope.name);
+        };
+      }
+    </script>
+  </head>
+  <body ng-controller='mainController'>
+    
+     <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">GuardianTrader</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Traders</a></li>
+        <li><a href="#senales">Senales</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Sign Up<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="#perfil">Perfil</a></li>
+            <li><a href="#">Calendario</a></li>
+            <li><a href="#">TradingView</a></li>
+          </ul>
+        </li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="main">
+      <!-- Aquí inyectamos las vistas -->
+      <div ng-view></div> 
+    </div>
+    
+   
+  </body>
+</html>
