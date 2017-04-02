@@ -7,20 +7,23 @@
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.7/angular.min.js"></script> 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.3/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.7/angular.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.3/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/jquery.min.js"></script>
+    <script  src=https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js"></script>
     <!--script src="/js/bootstrap.min.js"></script-->
     <!--script src="/js/angular.min.js"></script-->
     <script src="/js/main.js"></script>
-    <style>
-      body {
-        padding-top: 60px;
-      }
-    </style>
+     <script src="/css/miestilo.css"></script>
+       <!-- TradingView Widget BEGIN -->
+<script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
+
+<!-- TradingView Widget END -->
+   
      <script>
       function ChatController($scope) {
         var socket = io.connect();
@@ -49,6 +52,18 @@
           socket.emit('message', $scope.text);
           $scope.text = '';
         };
+        
+        $scope.sendsenal = function sendsenal() {
+          console.log('Sending message:', $scope.text);
+          socket.emit('message', $scope.text);
+          $scope.text = '';
+        };
+        
+        $scope.send2 = function send2() {
+          console.log('Sending message:', $scope.text);
+          socket.emit('message2', $scope.text);
+          $scope.text = '';
+        };
 
         $scope.setName = function setName() {
           socket.emit('identify', $scope.name);
@@ -57,7 +72,6 @@
     </script>
   </head>
   <body ng-controller='mainController'>
-    
      <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -91,6 +105,21 @@
     <div id="main">
       <!-- Aquí inyectamos las vistas -->
       <div ng-view></div> 
+      <script type="text/javascript">
+new TradingView.widget({
+  "autosize": true,
+  "symbol": "NASDAQ:AAPL",
+  "interval": "D",
+  "timezone": "Etc/UTC",
+  "theme": "Blue",
+  "style": "1",
+  "locale": "es",
+  "toolbar_bg": "rgba(73, 133, 231, 1)",
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "hideideasbutton": true
+});
+</script>
     </div>
     
    

@@ -30,8 +30,19 @@ angularRoutingApp.config(function($routeProvider) {
         });
 });
 
-angularRoutingApp.controller('mainController', function($scope) {
+angularRoutingApp.controller('mainController', function($scope, $http) {
     $scope.message = 'Hola, Mundo!';
+    $http.get('/traders').then(function(response){
+        $scope.traders = response.data;
+    });
+});
+
+angularRoutingApp.controller('TimeCtrl', function($scope, $interval) {
+  var tick = function() {
+    $scope.clock = Date.now();
+  }
+  tick();
+  $interval(tick, 1000);
 });
 
 angularRoutingApp.controller('aboutController', function($scope) {

@@ -9,7 +9,8 @@ var path = require('path');
 var async = require('async');
 var socketio = require('socket.io');
 var express = require('express');
-
+var mongodb = require("mongodb");
+var bodyParser = require("body-parser")
 //
 // ## SimpleServer `SimpleServer(obj)`
 //
@@ -18,9 +19,39 @@ var express = require('express');
 //
 var router = express();
 var server = http.createServer(router);
+var mongoClient = mongodb.MongoClient;
 var io = socketio.listen(server);
 
+// Connection url
+var url = 'mongodb://trader:1234@ds145780.mlab.com:45780/demoguardianapp';
+// Connect using MongoClient
+var db = null;
+mongoClient.connect(url, function(err, dbconn) {
+  if(!err)
+  {
+    console.log("Conectado a mongodb SI");
+    db = dbconn;
+  }
+});
+
 router.use(express.static(path.resolve(__dirname, 'client')));
+
+router.get('/traders', function(req, res, next){
+    /*var traders = [
+      'Toni',
+      'GuardianAdmin',
+      'Carlos',
+      'Julio,'
+      ];*/
+      
+      db.collection('traders',function(err,tradersCollection){
+        tradersCollection.find({}).toArray(function(err,traders){  //What's the correct callback synatax here?
+            return res.send(traders);
+        }); //find
+      });
+      
+});
+
 var messages = [];
 var sockets = [];
 
@@ -45,7 +76,26 @@ io.on('connection', function (socket) {
       socket.get('name', function (err, name) {
         var data = {
           name: name,
-          text: text
+          text: text,
+          destacado: false
+        };
+
+        broadcast('message', data);
+        messages.push(data);
+      });
+    });
+    
+    socket.on('message2', function (msg) {
+      var text = String(msg || '');
+
+      if (!text)
+        return;
+
+      socket.get('name', function (err, name) {
+        var data = {
+          name: name,
+          text: text,
+          destacado: true
         };
 
         broadcast('message', data);
