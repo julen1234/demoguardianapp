@@ -11,6 +11,7 @@ var socketio = require('socket.io');
 var express = require('express');
 var mongodb = require("mongodb");
 var bodyParser = require("body-parser")
+var bcrypt = require("bcryptjs")
 //
 // ## SimpleServer `SimpleServer(obj)`
 //
@@ -34,21 +35,62 @@ mongoClient.connect(url, function(err, dbconn) {
   }
 });
 
+router.use(bodyParser.json());
+
 router.use(express.static(path.resolve(__dirname, 'client')));
 
-router.get('/traders', function(req, res, next){
-    /*var traders = [
-      'Toni',
-      'GuardianAdmin',
-      'Carlos',
-      'Julio,'
-      ];*/
-      
-      db.collection('traders',function(err,tradersCollection){
-        tradersCollection.find({}).toArray(function(err,traders){  //What's the correct callback synatax here?
-            return res.send(traders);
-        }); //find
+router.post('/users',function(req,res,next){
+
+  db.collection('users',function(err,usersCollection){
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(req.body.password, salt, function(err, hash) {
+          var newUser = {
+          username:req.body.username,
+          password:hash,
+          nombre:req.body.nombre,
+          apellidos:req.body.apellidos,
+          pais:req.body.pais,
+          telefono:req.body.telefono,
+          email:req.body.email,
+          f_nacimiento: req.body.f_nacimiento,
+          genero:req.body.genero,
+          divisa:req.body.divisa,
+          apalancamiento:req.body.apalancamiento,
+          saldo:req.body.saldo
+          }
+          usersCollection.insert(newUser, {w:1}, function(err){
+              res.send();
+          });
       });
+    });
+  });
+});
+
+router.put('/users/signin',function(req,res,next){
+  db.collection('users',function(err,usersCollection){
+    //Se obtiene el usuario de la base de datos
+    usersCollection.find({username:req.body.username}).limit(1).toArray(function(err,user){
+          console.log(user[0].password);
+          console.log(req.body.password);
+          //Se compara la clave sin cifrar con el hash de la bd
+          bcrypt.compare(req.body.password, user[0].password, function(err, compres) {
+              if(compres){
+                res.send();
+              }else{
+                res.status(400).send();
+              }
+          });
+    }); 
+});
+});
+
+router.get('/traders', function(req, res, next){
+  
+    db.collection('traders',function(err,tradersCollection){
+      tradersCollection.find({}).toArray(function(err,traders){  //What's the correct callback synatax here?
+          return res.send(traders);
+      }); //find
+    });
       
 });
 

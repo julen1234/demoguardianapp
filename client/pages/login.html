@@ -1,0 +1,20 @@
+<div class="jumbotron text-center">  
+  <h1>Login</h1> 
+  <p>{{ message }}</p>
+</div>
+
+<div class="container" id="wrap">
+	  <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+                    <h4>It's free and always will be.</h4>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <input type="text" name="username" value="" class="form-control input-lg" placeholder="Username"  ng-model="username"/>
+                            <input type="password" name="password" value="" class="form-control input-lg" placeholder="Password"  ng-model="password"/>
+                       </div>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block signup-btn" ng-click="signin()">
+                        Log in</button>
+        </div>
+    </div>
+</div>

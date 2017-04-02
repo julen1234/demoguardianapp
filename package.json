@@ -7,6 +7,7 @@
   "author": "Mostafa Eweda <mo.eweda@gmail.com>",
   "dependencies": {
     "async": "~0.2.8",
+    "bcryptjs": "^2.4.3",
     "express": "~3.2.4",
     "mongodb": "^2.2.25",
     "socket.io": "~0.9.14"

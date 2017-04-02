@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" ng-app='angularRoutingApp'>
   <head>
-    <title>Chat Example</title>
+   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--link rel="stylesheet" href="/css/bootstrap.min.css"-->
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
@@ -19,10 +19,8 @@
     <!--script src="/js/angular.min.js"></script-->
     <script src="/js/main.js"></script>
      <script src="/css/miestilo.css"></script>
-       <!-- TradingView Widget BEGIN -->
-<script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
+     <!-- TRADINGVIEW-->
 
-<!-- TradingView Widget END -->
    
      <script>
       function ChatController($scope) {
@@ -70,6 +68,7 @@
         };
       }
     </script>
+    <title>GuardianTrader</title>
   </head>
   <body ng-controller='mainController'>
      <nav class="navbar navbar-inverse">
@@ -89,14 +88,15 @@
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Sign Up<span class="caret"></span></a>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"></span> Caracteristicas</span></a>
         <ul class="dropdown-menu">
             <li><a href="#perfil">Perfil</a></li>
             <li><a href="#">Calendario</a></li>
             <li><a href="#">TradingView</a></li>
           </ul>
         </li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="#signup"><span class="glyphicon glyphicon-user"> SignUp</a><span class="caret"></li>
+        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
   </div>
@@ -105,21 +105,6 @@
     <div id="main">
       <!-- Aquí inyectamos las vistas -->
       <div ng-view></div> 
-      <script type="text/javascript">
-new TradingView.widget({
-  "autosize": true,
-  "symbol": "NASDAQ:AAPL",
-  "interval": "D",
-  "timezone": "Etc/UTC",
-  "theme": "Blue",
-  "style": "1",
-  "locale": "es",
-  "toolbar_bg": "rgba(73, 133, 231, 1)",
-  "enable_publishing": false,
-  "allow_symbol_change": true,
-  "hideideasbutton": true
-});
-</script>
     </div>
     
    

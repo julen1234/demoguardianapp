@@ -1,5 +1,9 @@
+<div ng-include="'header.html'"></div>
 <div class="jumbotron text-center" ng-controller='ruteop'>  
   <h1>Forex</h1> 
   <p>{{ message }}</p> 
 </div> 
-<div ng-view></div>
+<input type="text" placeholder="nombre" ng-model="search.nombre"><input type="text" placeholder="estrategia" ng-model="search.estrategia">
+  <div class="container-fluid">
+    <h1>Traders</h1>
+    
