@@ -3,11 +3,11 @@
   <head>
    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--link rel="stylesheet" href="/css/bootstrap.min.css"-->
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.7/angular.min.js"></script> 
+    <script src="/js/angular-cookies.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.3/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -15,12 +15,8 @@
     <script src="/js/jquery.min.js"></script>
     <script  src=https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js"></script>
-    <!--script src="/js/bootstrap.min.js"></script-->
-    <!--script src="/js/angular.min.js"></script-->
     <script src="/js/main.js"></script>
-     <script src="/css/miestilo.css"></script>
-     <!-- TRADINGVIEW-->
-
+    <script src="/css/miestilo.css"></script>
    
      <script>
       function ChatController($scope) {
@@ -71,7 +67,9 @@
     <title>GuardianTrader</title>
   </head>
   <body ng-controller='mainController'>
-     <nav class="navbar navbar-inverse">
+
+<!--
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -101,12 +99,46 @@
     </div>
   </div>
 </nav>
-
-    <div id="main">
-      <!-- Aquí inyectamos las vistas -->
-      <div ng-view></div> 
+-->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">GuardianTrader</a>
     </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Traders</a></li>
+        <li><a href="#senales">Senales</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">Acciones</li>
+            <li><a href="#perfil">Perfil</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Calendario</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#signup"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+
+<div id="main">
+  <!-- Aquí inyectamos las vistas -->
+  <div ng-view></div> 
+</div>
     
-   
   </body>
 </html>

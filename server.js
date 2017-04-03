@@ -5,13 +5,14 @@
 //
 var http = require('http');
 var path = require('path');
-
 var async = require('async');
 var socketio = require('socket.io');
 var express = require('express');
 var mongodb = require("mongodb");
 var bodyParser = require("body-parser")
 var bcrypt = require("bcryptjs")
+var jwt = require('jwt-simple');
+var JWT_SECRET = "5r6qwer4sd56f46dsa65f4a6w8esd5f4";
 //
 // ## SimpleServer `SimpleServer(obj)`
 //
@@ -27,6 +28,7 @@ var io = socketio.listen(server);
 var url = 'mongodb://trader:1234@ds145780.mlab.com:45780/demoguardianapp';
 // Connect using MongoClient
 var db = null;
+
 mongoClient.connect(url, function(err, dbconn) {
   if(!err)
   {
@@ -40,7 +42,6 @@ router.use(bodyParser.json());
 router.use(express.static(path.resolve(__dirname, 'client')));
 
 router.post('/users',function(req,res,next){
-
   db.collection('users',function(err,usersCollection){
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
@@ -70,18 +71,23 @@ router.put('/users/signin',function(req,res,next){
   db.collection('users',function(err,usersCollection){
     //Se obtiene el usuario de la base de datos
     usersCollection.find({username:req.body.username}).limit(1).toArray(function(err,user){
+      if (typeof user[0] !== 'undefined') {
           console.log(user[0].password);
           console.log(req.body.password);
           //Se compara la clave sin cifrar con el hash de la bd
-          bcrypt.compare(req.body.password, user[0].password, function(err, compres) {
-              if(compres){
-                res.send();
+          bcrypt.compare(req.body.password, user[0].password, function(err, compresult) {
+              if(compresult){
+                var userToken = jwt.encode(user[0].password, JWT_SECRET);  
+                res.send({token:userToken});
               }else{
                 res.status(400).send();
               }
           });
+      }else{
+        res.status(400).send();
+      }
     }); 
-});
+  });
 });
 
 router.get('/traders', function(req, res, next){

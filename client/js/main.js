@@ -1,5 +1,5 @@
 // Creación del módulo
-var angularRoutingApp = angular.module('angularRoutingApp', ['ngRoute']);
+var angularRoutingApp = angular.module('angularRoutingApp', ['ngRoute', 'ngCookies']);
 
 // Configuración de las rutas
 angularRoutingApp.config(function($routeProvider) {
@@ -38,6 +38,13 @@ angularRoutingApp.config(function($routeProvider) {
         });
 });
 
+angularRoutingApp.run(function($rootScope, $cookies){
+        if($cookies.token && $cookies.username){
+            $rootScope.globalUsername = $cookies.username;
+            $rootScope.globalToken = $cookies.token;
+        }
+    });
+
 angularRoutingApp.controller('mainController', function($scope, $http) {
     $scope.message = 'Hola, Mundo!';
     $http.get('/traders').then(function(response){
@@ -70,16 +77,40 @@ angularRoutingApp.controller('signupController', function($scope, $http) {
     }
 });
 
-angularRoutingApp.controller('loginController', function($scope, $http) {
+angularRoutingApp.controller('loginController', function($scope, $rootScope, $http, $cookies) {
     $scope.message = 'Esta es la página login';
     $scope.signin = function(){
-        $http.put('/users/signin',{username: $scope.username, password: $scope.password}).then(function(){
+        $http.put('/users/signin',{username: $scope.username, password: $scope.password})
+        .then(function(res){
+            console.log(res.data.token);
+            $rootScope.globalUsername = $scope.username;
+            $rootScope.globalToken = res.data.token;
+            $cookies.username = $scope.username;
+            $cookies.token = res.data.token;
             alert("Login Succesfull");
         },function(err){
             alert("Login Failed");
         });
         
     }
+});
+
+angularRoutingApp.controller('customersCtrl', function($scope) {
+    $scope.names = [
+        {name:'Jani',country:'Norway'},
+        {name:'Carl',country:'Sweden'},
+        {name:'Margareth',country:'England'},
+        {name:'Hege',country:'Norway'},
+        {name:'Joe',country:'Denmark'},
+        {name:'Gustav',country:'Sweden'},
+        {name:'Birgit',country:'Denmark'},
+        {name:'Mary',country:'England'},
+        {name:'Kai',country:'Norway'}
+        ];
+    $scope.orderByMe = function(x) {
+        $scope.myOrderBy = x;
+    }
+
 });
 
 angularRoutingApp.controller('TimeCtrl', function($scope, $interval) {
