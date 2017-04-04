@@ -28,12 +28,21 @@ var io = socketio.listen(server);
 var url = 'mongodb://trader:1234@ds145780.mlab.com:45780/demoguardianapp';
 // Connect using MongoClient
 var db = null;
-
+var signals = [];
 mongoClient.connect(url, function(err, dbconn) {
   if(!err)
   {
     console.log("Conectado a mongodb SI");
     db = dbconn;
+    db.collection('signals',function(err,tradersCollection){
+      tradersCollection.find({}).toArray(function(err,signalslist){  //What's the correct callback synatax here?
+          signals = signalslist;
+      }); //find
+    });
+  }
+  else
+  {
+    console.log("NOOOO");
   }
 });
 
@@ -106,6 +115,9 @@ var sockets = [];
 io.on('connection', function (socket) {
     messages.forEach(function (data) {
       socket.emit('message', data);
+    });
+    signals.forEach(function (data) {
+      socket.emit('signal', data);
     });
 
     sockets.push(socket);

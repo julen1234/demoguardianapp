@@ -137,7 +137,7 @@ angularRoutingApp.controller('TimeCtrl', function($scope, $interval) {
 });
 
 angularRoutingApp.controller('aboutController', function($scope) {
-    $scope.message = 'Esta es la página "senales de"';
+
 });
 
 angularRoutingApp.controller('binariasController', function($scope) {
@@ -154,6 +154,17 @@ angularRoutingApp.controller('contactController', function($scope) {
 
 angularRoutingApp.controller('tradingViewController', function($scope, $sce) {
     //TUTORIAL METER IFRAME EN ANGULAR:http://plnkr.co/edit/MIj215Ek4IGQog8uP5yq?p=preview
-  $scope.player = $sce.trustAsHtml('<iframe id="tradingview_41027"ng-show="selected_stock"src="https://www.tradingview.com/widgetembed/?symbol="NASDAQ:GOOGL"&amp;interval=D&amp;toolbarbg=E4E8EB" width="100%" height="200" frameborder="0" allowtransparency="true" scrolling="no"></iframe>');
+  $scope.player = $sce.trustAsHtml('<iframe id="tradingview_41027"ng-show="selected_stock"src="https://s.tradingview.com/widgetembed/?symbol=EURUSD&interval=1&hidesidetoolbar=0&symboledit=1&saveimage=0&toolbarbg=f1f3f6&studies=ROC%40tv-basicstudies%1FStochasticRSI%40tv-basicstudies%1FMASimple%40tv-basicstudies&hideideas=1&theme=White&style=1&timezone=exchange&withdateranges=1&showpopupbutton=1&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&showpopupbutton=1&referral_id=1417&utm_medium=widget&utm_campaign=chart&utm_term=EURUSD" width="100%" height="450" frameborder="0" allowtransparency="true" scrolling="no"></iframe>');
 });
-
+//Solucion meter iframes http://plnkr.co/edit/Md5QC4?p=preview
+/*<iframe-directive></iframe-directive>
+angularRoutingApp.directive('iframeDirective', ['$sce', function($sce) {
+  return {
+    restrict: 'E',
+    template: '<iframe src="{{ trustedUrl }}" style="width:350px; height:300px" frameborder="0" scrolling="no"><p>Tu navegador no soporta iframe.</p></iframe>',
+    link: function(scope) {
+      scope.trustedUrl = $sce.trustAsResourceUrl("//fxlabs.iitech.dk/Widgets/Chart/Chart.aspx?instanceId=27354");
+    }
+  }
+}]);
+*/

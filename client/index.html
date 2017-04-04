@@ -13,15 +13,19 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script  src=https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/timepicker.js"></script>
     <script src="/css/miestilo.css"></script>
-   
+    <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
+    
+    
+                                                                                    
      <script>
       function ChatController($rootScope, $scope) {
         var socket = io.connect();
         
         $scope.messages = [];
+        $scope.signals = [];
         $scope.roster = [];
         $scope.name = $rootScope.globalUsername;
         $scope.text = '';
@@ -33,12 +37,22 @@
         socket.on('message', function (msg) {
           $scope.messages.push(msg);
           var audio = new Audio('http://soundbible.com/mp3/sms-alert-1-daniel_simon.mp3');
+          audio.volume = 0.1;
           audio.play();
           $scope.$apply();
         });
 
         socket.on('roster', function (names) {
           $scope.roster = names;
+          $scope.$apply();
+        });
+        
+        socket.on('signal', function (msg) {
+          $scope.signals.push(msg);
+          console.log(msg);
+          var audio = new Audio('http://soundbible.com/mp3/sms-alert-1-daniel_simon.mp3');
+          audio.volume = 0.1;
+          audio.play();
           $scope.$apply();
         });
 
@@ -48,10 +62,10 @@
           $scope.text = '';
         };
         
-        $scope.sendsenal = function sendsenal() {
-          console.log('Sending message:', $scope.text);
-          socket.emit('message', $scope.text);
-          $scope.text = '';
+        $scope.sendSignal = function sendSenal() {
+          console.log('Sending signal:', $scope.userSignal);
+          socket.emit('signal', $scope.userSignal);
+          $scope.userSignal = {};
         };
         
         $scope.send2 = function send2() {
