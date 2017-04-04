@@ -44,15 +44,27 @@ angularRoutingApp.run(function($rootScope, $cookies){
             $rootScope.globalToken = $cookies.token;
         }
     });
-
-angularRoutingApp.controller('mainController', function($scope, $http) {
+    
+angularRoutingApp.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+});
+    
+angularRoutingApp.controller('mainController', function($scope, $http, $cookieStore, $rootScope) {
     $scope.message = 'Hola, Mundo!';
     $http.get('/traders').then(function(response){
         $scope.traders = response.data;
     });
+    $scope.logout = function(){
+        $cookieStore.remove('token');
+        $cookieStore.remove('username');
+        $rootScope.globalToken = "";
+        $rootScope.globalUsername = "";
+    };
 });
 
-angularRoutingApp.controller('signupController', function($scope, $http) {
+angularRoutingApp.controller('signupController', function($scope, $http, $location) {
     $scope.message = 'Esta es la página signup';
     
     $scope.submitSignup = function(){
@@ -72,12 +84,13 @@ angularRoutingApp.controller('signupController', function($scope, $http) {
             genero: $scope.genero
         };
         $http.post('https://nodeguardianapp-josmaxwell.c9users.io/users', newUser).then(function() {
-           alert('Registrado!') 
+           alert('Registrado!')
+           $location.path('/login');
         });
     }
 });
 
-angularRoutingApp.controller('loginController', function($scope, $rootScope, $http, $cookies) {
+angularRoutingApp.controller('loginController', function($scope, $rootScope, $http, $cookies, $location) {
     $scope.message = 'Esta es la página login';
     $scope.signin = function(){
         $http.put('/users/signin',{username: $scope.username, password: $scope.password})
@@ -87,9 +100,11 @@ angularRoutingApp.controller('loginController', function($scope, $rootScope, $ht
             $rootScope.globalToken = res.data.token;
             $cookies.username = $scope.username;
             $cookies.token = res.data.token;
-            alert("Login Succesfull");
+            alert("Bienvenido de nuevo "+$scope.username+".");
+            $location.path('/senales');
         },function(err){
-            alert("Login Failed");
+            alert("Lo sentimos. Tu usuario o contraseña es incorrecto.");
+            $location.path('/login');
         });
         
     }

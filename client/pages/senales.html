@@ -2,18 +2,31 @@
   <div class="row">
     <div ng-controller="ChatController" class="col-sm-6 col-xs-12 col-md-6 col-lg-6" >
         <div class="container-fluid" ng-controller="customersCtrl">
+            <div class="bs-component">
+              <table class="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th class="info">#</th>
+                    <th class="info">Column heading</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in names">
+                    <td ng-if="$odd" class="success">
+                    {{ x.name }}</td>
+                    <td ng-if="$even" class="danger">
+                    {{ x.name }}</td>
+                    <td ng-if="$odd" class="warning">>
+                    {{ x.country }}</td>
+                    <td ng-if="$even" class="active">
+                    {{ x.country }}</td>
+                  </tr>
+                </tbody>
+              </table> 
+            </div><!-- /example -->
             <table class="table table-striped" >                          
                             	<table>
-                                <tr ng-repeat="x in names">
-                                  <td ng-if="$odd" style="background-color:#f1f1f1">
-                                  {{ x.name }}</td>
-                                  <td ng-if="$even">
-                                  {{ x.name }}</td>
-                                  <td ng-if="$odd" style="background-color:#f1f1f1">
-                                  {{ x.country }}</td>
-                                  <td ng-if="$even">
-                                  {{ x.country }}</td>
-                                </tr>
+
                               </table>                           
                             </table>
         </div>
@@ -108,7 +121,6 @@
                 </div>
                 <div class="panel-footer">
                     <form ng-submit="send()">
-                    <input type="text" class="input-block-level" ng-model="name" ng-change="setName()" placeholder="Your Name">
                       <input type="text" class="span7" ng-model="text" placeholder="Message">
                       <input type="submit" class="btn btn-primary" value="Send" ng-disabled="!text">
                       <button type="button" ng-click="send2()" class="btn btn-danger" value="Alerta" ng-disabled="!text">Danger</button>
