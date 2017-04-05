@@ -34,9 +34,10 @@ mongoClient.connect(url, function(err, dbconn) {
   {
     console.log("Conectado a mongodb SI");
     db = dbconn;
-    db.collection('signals',function(err,tradersCollection){
-      tradersCollection.find({}).toArray(function(err,signalslist){  //What's the correct callback synatax here?
+    db.collection('signals',function(err,signalsCollection){
+      signalsCollection.find({}).toArray(function(err,signalslist){  //What's the correct callback synatax here?
           signals = signalslist;
+          console.log(signals);
       }); //find
     });
   }

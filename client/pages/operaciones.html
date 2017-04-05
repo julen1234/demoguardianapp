@@ -1,0 +1,35 @@
+<div class="well well-sm" style="height: 200px; overflow-y: auto;">
+                        <table class="table">
+                          <tr>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Hora inicio</th>
+                            <th>Hora fin</th>
+                            <th>Importe</th>
+                            <th>Mercado</th>
+                            <th>cuenta</th>
+                            <th>Up/Down</th>
+                            <th>Resultado</th>
+                          </tr>
+                          <tr ng-repeat="signal in signals">
+                            <td ng-if="$odd" ng-bind="signal.username" style="background-color:#686868"></td>
+                            <td ng-if="$even"  ng-bind="signal.username"></td>
+                            <td ng-if="$odd"  ng-bind="signal.fecha" style="background-color:#686868"></td>
+                            <td ng-if="$even"  ng-bind="signal.fecha"></td>
+                            <td ng-if="$odd" ng-model="signal.hora_inicio" style="background-color:#686868" ></td>
+                            <td ng-if="$even" ng-model="signal.hora_inicio"></td>
+                            <td ng-if="$odd" ng-bind="signal.hora_fin" style="background-color:#686868"></td>
+                            <td ng-if="$even" ng-bind="signal.hora_fin"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.importe"></td>
+                            <td ng-if="$even" ng-bind="signal.importe"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.mercado"></td>
+                            <td ng-if="$even" ng-bind="signal.mercado"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.cuenta"></td>
+                            <td ng-if="$even" ng-bind="signal.cuenta"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.up_down"></td>
+                            <td ng-if="$even"  ng-bind="signal.up_down"></td>
+                            <td ng-if="$odd"  style="background-color:#686868" ng-bind="signal.ganada"></td>
+                            <td ng-if="$even"  ng-bind="signal.ganada"></td>
+                          </tr>
+                        </table> 
+                      </div>

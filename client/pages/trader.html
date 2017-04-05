@@ -2,11 +2,12 @@
 
 <div class="row form-group" ng-controller="mainController">
  <div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" >
-        <div class="container-fluid" >
+		  <div class="well well-sm"  >
+		      <div class="container-fluid" >
             <div class="panel panel-primary">
-              <div class="panel-heading">Filtro</div>
+              <div class="panel-heading"><span class="glyphicon glyphicon-filter"> Filtro</span></div>
               <div class="panel-body" >
-                <span class="glyphicon glyphicon-filter"></span>
+                
                 <label>Nombre: </label>
                 <input type="text" placeholder="nombre" ng-model="search.nombre">
                 <label>Estrategia: </label>
@@ -14,39 +15,30 @@
               </div>
             </div>
         </div>
-  
-    
+		  <div class="container-fluid" style="height: 600px; overflow-y: auto;">
+		      <div class="media" ng-repeat="trader in traders | filter:search">
+		          
+                    <a href="#" class="btn btn-primary btn-lg btn-block" style="padding: 0; margin: 0; padding-left: 0px; padding-right: 0px; padding-top: 0px;">
+		              <div class="panel panel-primary">
+		              
+                         <div class="panel-heading media-heading">{{trader.nombre}}</div>
+                         <div class="panel-body">
+                             <img class="img-circle media-object thumbnail pull-left" style="padding: 0; margin: 0;" height="150" width="90" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALYAAAEVCAMAAAB60e/CAAAAhFBMVEXm5ub///8AAADs7Ozp6enu7u7x8fHi4uLd3d2ioqK8vLzW1tZtbW35+flZWVkTExOLi4u0tLQ/Pz9/f3+WlpZGRkbIyMjCwsJ1dXVRUVGnp6fQ0NCdnZ03NzcbGxsvLy9mZmaFhYUnJycXFxdeXl4NDQ04ODhDQ0NMTEwiIiKurq5paWlz8xWRAAAQAUlEQVR4nNWdaZeiOhCGERJEUdxwt10Y7Vb7//+/gTZVCbIkRIhYX+45M1d4JlQqW+Utq1OzuX7/Hg6u08NtZNuj22F6HYT3vj+s9y1WfY8a0n54tgvtGPZpbfB1YTv9VVSMDBbN+rSW19WC7YVrOTJYsOu+/sbXsd17BeaHrSfum7G3g0tV6MQuK/+N2Nu5DjNr8u2bsBfTfKDRYb06hbveZtPbhafVNRrl/3/zxRuwtz9ZkNvParP0HZdSB41Sl/jLzWq6zwHXdRVdbHeVaeN1uPQoJYRYGYv/kFJvGa4zHWGm1zk1se9P332/mvjUyQFOwTuOPxk8Nfr+bgybPIW84O7RvEbOa3bqbYKnX2uMQDrYy/Rrx74aMphD/HH6CdW7pgb2KfXK0JL5Rp63WGnwcePY7pfwun9hTKBljhX+Ex50rdgzq2J3xR4162pCJ0Y9MRgdqoFUxPaFCHZdUH3o2AhdCoPs3msOeyG0z65aR8wFJ6HwwCqDfSVsIYRELzY1M7q8aQWUKtg+f8PRermpH0Y8YUGkPhGvgG0JDlJLUz+4qeAoygOPOvaQj+f3+qhjc3s8nqjGQXVsPuGb1EodO/gEHx3Ujc2D7LJm6pi7jw8/1YvNH9x/YYgpMoe3t1o4UcSmODhuam/rP+4dPP+mtJeiiH2Ep4aNUMd+gnOrQX3Yd3jmqiHqmHuAXlgXtgtP/Oo2RW2RbgRvqQsbP+CyprExzxzs9WE92A48b9yYiyRGZ/Ae+aCjgg0he95gWyfmHNiLZnVgd024SGIE3UQ6p1LAhuAXuM1Sx80NOwKr17EpNIHfcGPHzQ3LkJFsKijHhvGruZDNzYHgLdvzkWNDP/Eab+y4ubfsZddXseG7HRuYQWXNgR0ryZ6mFBs+W99AY8fNDdMISQyUYcPU78sEdGwwxI/KJ4IybHC2sREfiYfKk5KXyLDxKUZ8RIiB5RMTGfaVjetmoC0+wpfHEgk2gR5iIGg/jMIMqNS5JdiwxjMTRxLDWFK6WpBgs7nk3pRrx+ZBEHgBm0X/tTEfsSz3m71TH3vIovbMUPhLDFcL+tiwiLyb8xHL6b2MDXusTS8QRCMQBsoGnHLszeMBl61JbOiTZaGkHJst2SOD1HGfZNg7bWzWO+YGA0ncJ9k4WbYyK8dmy8jALDabUBy1sdmS9GgW+ywP3OXYbCvexDJSwGYrkx9t7IP50SYO3GyyfNDGZsc1ptYIDJvFr702NgtFPbPY7Ojs8ir27sOw/73TSW7a2O/pkmyQ+9LGZhkIg7cEwLk2NlslnM1is7eWHa2WY7N/t8nFTYwN31gbm3nZ1Ci2G7EepY3NQlFkkhonrj1tbFj8G10mwP6d/jIBFxomsaGtypKnJCv3N4zuePxeBibBhoWGwT4JYbtsbJdt77DlzdVga7usqc4vYLOp78XcZhqBTY7SnWIJNqTQTcxhs02O8nwYCTYcSpqblcBKsjzPQbYtz+YH381lZDzbTcG1pdiQpLcwdQgCblk2RsqxoYOYmnLjYUJ5toAMe8jmNXszXkI8tjV9eO2ADyaB9sbMKTDsEkvy56XY4CVrI9jkquQjCqkCkCRqYhaIHbI8jqhgwy5581kwMTbkwciS6uTYMAs0cKSAWUeRLPVSIekIOuVP4yMl+VbrkErYmLx4b7hXOjAduUjTz1US6iB7MWo6dkP7yPMXVbDRu5udULl4S0GOpJQsCh+vUTehmOs/qQkb07xGzS0XcMFeumVZDRuvCQWNUVswPsqyuypg81t7TS2GyS+8Qek2nyL2ECKqfWpksHQwm7jsoKkytnDDqddAe1O8mlC6qVMduxM2yC1Qly9qqmNjHmP91yr4dQqFzO2q2B3s6vWe5RDu19L5qg427Kwl8aSuC3zJVQr+GafKLFUuHhJ+e3e6rclRqKCoMFK/EFzpmqcnXKnd1BIIhc5o/6tyCbIKdscSLjAPrJc93LGO/HmRUwWkEnbH5f6dLOZf8nDi9ISHTSvp8lS9MD68Cq+aL/TBibMQJTdUL0pqYosXJxNP2eqBx9C/4nNOFSE0xBAm4vvsX40Wj6HTSk4qt99exe54aRWY88SiFcgJtSZpzYyf6hBaQh/DtPqEHZ0WrlqbE8ddzKL0ryvrTuhid9yr/WTf4yWV6KoQh9Ll+PD8y4OOkI0Wdvj8atY/e1tCHCcrkvD4023vN/93x+pCNhrYfqbBBLvOdn3f68Ye/LD4A3Q9v7+blUo5VRayqY69K3s/fPj1eTBYzWarweC8jhR+cCbNYlsp2Z3vQRGH1C6rVDi5KOwy6GOnYnbU61I/LNDEKref0Kekn+rYqiuE6tjDo/iecaIFQxxrmZGYktls8SfYQ8hE1JmaVnCUKtgpAZvAdzCwWfcK5LMJFxlyrJn4V8smsEUpGHviimGOUHcRzqVadZdruHXTIypNqcWVpWxrYt+FxwdeZq4dDyZkcZ/No1z4SzSf3RckZ0AijjgK1L4EFoWgdgXDYaKMZm2X/d7p9xys19freh0cB6dNf7m1aM4wxBpcnMEGakOP6q6UEOnm5etIkoyJj6GG/Yfkyr8Jv7CErjFX4lbDpkKoGte3akfDcwRbURFGTcNBGM7rloJh3FuueKSygFc6TeDUo0VDG/PEEyJKLWIIcOwe27ff2HECIbz7yP1E4VySj95Bt8mjScoXH+uXzyWFpfrqdbmxUnN5kC27vKKCPeTztLDxZAFBGUui4qCYdGQ3LU6S4T69gj0zSp3y7xcS6vgocDKUmkYF2S1dbDwqNHg7weFz+pL5dxk2au7YK4PJolxtteRyQgn2EMU4BybvSxKLHybqYOPXaloq6Jnbi+DNhXuDxdgYiy4mBFVS3HwdVZTpVYjNf2oq4ZIbF34rOoQqwh7iRLIZSToJN06rCkbLImz8ndmLWWBdDAf5MqkF2ChMFRj3kD/j7p1/azIfG7O6Dqa7IxjP5cnd/s7HxojfhEKkIje6aV7OQy42TkXMqalkjcCGS54uTB42SMDYhzd5yAMb+9dGDRvn2CbvZGWN4jCdnVPlYKOAclNynIpG8Ij/VwEbZ1Am7wjlGj/czgTvLDYOrO91kcRwDps52s5gY39sfsUrx8ZB5/nuUAYbFkUNap+qGy4tn6dUz9iYODd5f2PH5oF69rIcG7agglZQ8x2IUSk2hvj390dmkJ81KcOOWjCqpwxXDPsSbBhpRm3ojw9zoLnvxdgw0piVyCg1PGj4KsTGYb0tLpIYgUOBRRH2tH2NHTc3nCyeC7DRs9sSRZihkmw+9rWNjc3VYcRNKgEbNipv7Qkjf0Z8NlT+c/OwYfHWgjlU2hyYJ21ysGF/9ea9G/PZcCL4lYMNw5GZY4NKhrrc2yw29FeDapyqhsqGsww2Kj+3r7GFISeDDctkk1IkygZSUzjtBmzokF9tpOYXzn6fsCGkty76PYx+pb0EsG0YQN8NmG84UvZT2CCyY1avS91QbjRIYcM/xqRgayVzIZ/KFbHhyMPAXXY9wx2qiYCNuhgt9RGLC0X/Ctjo8G31EV6aIBKwWXi5tJeaxxIfseEDmDxar2o44vQQ+wN8hFdUCBCbzQsNKb5oGhyx7inDhkoUbfYRYcNky7Ah/G3a7CNc3mvMsMG1W7NdWWA/3LkTbHa/a/puLIlBGtXe/cN2/7V7GgWGSzPrDxt8xqRcv47hAn7yh/0prm15bEV5+sM+foZrx87Nxpdzgg3Z2W13bd4nR8MYG2VTWz3YJIaao06MDT2y1ROSP0ONr36MjWNm67EtkK8LY+y3VKLQM5cdd6xibLZquLa+R3IdzGuMzXykxctINChNsO9YoHXV7unfw3Du2rFQf/kDsHFW4lpwyt7Cbe2MYQT0LQzh72ZSMFwp9C129nFr7X6UaCDiu4E7f81rFNZhIDsfWixst/LsI2NwAXIFCmufELZ5SYWBxfbRzJb90DXKVCDOFvOWlp2zFxjMuK/W6JOwYXSfgixm+xcJicG268G6fBQ2jDKfiT0C7A/xbTjB+bAuidjsjKylp79PBk5ygeHm9FHYexClaf/mTmKAHVlvKWqoa5CgcbCg4N1HYMMdoqsFdUY/A/sKM0AssPpuJBWDQp9jXLm3NrdBNJcNjhvrHaV/dQ2XwBO+K/UBgRuvmW0tSMj9hD1A3OAe4o7r7d1MCoaywB0L9aI+oE9SdqC6jrG79sdMpjwo05kcOd0+ZXhPHYLALbL2JUA/G6aMugk2OLe5ol6a5jANp6/kgK8Di/fflnsJph3NHhkOkLzTci/BFdnygQ158mbKNWkb3FW9PBIzMDFt3WrnRh85QooXXLhp9Ykq3lSdADbMuVud4wUJdUnyzgN7CNqbLT53wsO9FU8WhfY3W2++khHIl99ybJiX2O/S9ZAaHkl+i/nboNV8bOuBGY2EDonY2Nwtnb7iUDNKX6kArfeflgYTUKHYpLF5sa029kouAPd0gYWXPWrhmOPg9fv+M7YLsgPrd0NmDeWaUMqB3+BDDeLW7RnjNc+8i4dcu6YdqhNoXFKXCy8L2Ngr2zXG87pr+9y7wFyX6dKoXms1Ix4WBxLEPlLX81FaaNqAfLKeEZyLpLS5U9hc1jdoCTch2ONSgjBp6QlY58RhsBV+QixeqaVbjM1lVexrCyaDInVaxeZZxIbXoJi+nZt4XB/5qVpcRumI6+Qesrr3Rs3ZYlfLSOVn5bAEnfflO6dVlDusPXiGzNFMEyowhA1LVxcbob0S6lyFOqHWwPlNjuJ4wkfPKr3lyxgKBRiitziKMxFE+PNKQOSLRoo1bcavV3+rCt0VS4zkVpwsUBYV6hjYt3T9j6aNuP1IeHu+nHWRjisosPxZ4JvzFOqJpX8uBfWpCsV+h6niP6Y8xfFSlWSmRcWvSxShU/Wxol23+RZ3PLFgiqaQdWcrOop9C70qxd8qG6He7ia+8PCsXaiI3aHpwmL7sd8YOKHbWQranpWVfJAo+S/SNckus6Wk9Jses0OeyvLZt5KmlmNny5IdQq/eeEgc1w+jp7eUNrUKdoeenx5pr++WU1NgIQ71w+/nFxylNbRUCscss9XrBj3PetVbCHGsvDJna4X60WrVhZaZCoe2PT8tvbw6gYrItOtvVl/Zx17LnboSdtw3g+wb7P153N92i4tLFbQxpd52M8itJhcolipTL/jlH/PeY9vfwR/7o9RUKW8CTLbL3qComuBJrbx4JexOpzve578uHkS/g1VvsvSpy2pmCZb8gUu9xeQeDtaHwhpsh16FMpMVSwcuJCUOR7fDT/A7G/fQwtPgfP0+/Cv/nT1Qcmld7NjuWiUOy5nVi+9pY8fOcg9kjadu+1VlZk3s2Ibb048cSWa3YLetVDP6VezEupNVTjhXRj7u/OqlXmvATox6vfJirnn2NRj3LX3kGrD/bOhNwlMQyXkv08F447t6fpGyOrDBXL9/3+xOq/P8sB/92eWyP0yDYxwQN/1tlXrtMvsPQ8fwxxnmNIQAAAAASUVORK5CYII=">
+                             <div class="row-fluid col-sm-2 col-xs-4 col-md-2 col-lg-2">
+                                <div class="btn-group-vertical">
+                                        <p href="#" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-comment"></span> Message</p>
+                                        <p class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-heart"></span> Favorite</p>
+                                        <p href="#" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow</p>
+                                        <p href="#" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-usd"></span>cuenta</p>
+                                    </div>
+                                 
+                             </div>
 
-		      <div class="well well-sm" style="height: 600px; overflow-y: auto;" >
-            <div class="container-fluid">
-                <div class="media" ng-repeat="trader in traders | filter:search">
-                  <button type="button" class="btn btn-primary" style="background-color: #9B9A9A; border-color: #d6e9c6;">
-                <h4 class="media-heading">{{trader.nombre}}</h4>
-                        <p>Estrategia: {{trader.estrategia}}</p>
-                
-                        <img class="media-object img-responsive img-circle thumbnail pull-left" height="auto" width="90" src="data:image/png;base64,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">
-                   
-                    <div class="media-body">
-                        
-                		<p>
-                		  <span class="label label-info">{{trader.pip}} pips (media de {{trader.media_pip}})</span> 
-                		  <span class="label label-warning">ROI -> {{trader.roi}}</span>
-                		</p>
-                		<p>
-                		  <span class="label label-info">{{trader.n_ops}} operaciones</span> 
-                		  <span class="label label-warning">{{trader.ganancia}} € ganados</span>
-                		</p>
-                		<p>
-                		    <span class="label label-warning">{{trader.n_usuarios}} seguidores</span>
-                		</p>
-                        <p>
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow</a>
-                        </p>
-                  
-                    </button>
+                         </div>
+                     </div>
+                       </a>
                     </div>
+                     
                 </div>
             </div>
        
@@ -56,7 +48,7 @@
 	<div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" >
         <div class="container-fluid" >
             <div class="panel panel-primary" >
-              <div class="panel-heading">Mi perfil</div>
+              <div class="panel-heading">Perfil</div>
               <div class="panel-body">
               
               	 <div class="container-fluid col-sm-4 col-xs-12 col-md-4 col-lg-4">
@@ -87,13 +79,50 @@
             		</div>
                   </div>
                   
-                  <div class="container-fluid col-sm-12 col-xs-12 col-md-12 col-lg-12" ng-controller="customersCtrl">
+                  <div class="container-fluid col-sm-12 col-xs-12 col-md-12 col-lg-12" ng-controller="ChatController">
             		<div class="panel panel-primary " style="background-color: #9B9A9A; border-color: #d6e9c6;">                      
                 		<div class="panel-body">  
-							      <div class="jumbotron text-center">  
-                            <h1>grafica</h1> 
+                            <h1>operaciones</h1> 
+                            <div class="well well-sm" style="height: 200px; overflow-y: auto;">
+                        <table class="table">
+                          <tr>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <!--th>Hora inicio</th-->
+                            <th>Hora</th>
+                            <th>Importe</th>
+                            <th>Mercado</th>
+                            <th>cuenta</th>
+                            <th>Up/Down</th>
+                            <th>Resultado</th>
+                          </tr>
+                          <tr ng-repeat="signal in signals">
+                              
+                              <tr class="info">
+                            <td ng-if="$odd" ng-bind="signal.username" style="background-color:#686868"></td>
+                            <td ng-if="$even"  ng-bind="signal.username"></td>
+                            <td ng-if="$odd"  ng-bind="signal.fecha" style="background-color:#686868"></td>
+                            <td ng-if="$even"  ng-bind="signal.fecha"></td>
+                            <!--td ng-if="$odd" ng-model="signal.hora_inicio" style="background-color:#686868" ></td>
+                            <td ng-if="$even" ng-model="signal.hora_inicio"></td-->
+                            <td ng-if="$odd" ng-bind="signal.hora_fin" style="background-color:#686868"></td>
+                            <td ng-if="$even" ng-bind="signal.hora_fin"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.importe"></td>
+                            <td ng-if="$even" ng-bind="signal.importe"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.mercado"></td>
+                            <td ng-if="$even" ng-bind="signal.mercado"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.cuenta"></td>
+                            <td ng-if="$even" ng-bind="signal.cuenta"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.up_down"></td>
+                            <td ng-if="$even"  ng-bind="signal.up_down"></td>
+                            <td ng-if="$odd"  style="background-color:#686868" ng-bind="signal.ganada"></td>
+                            <td ng-if="$even"  ng-bind="signal.ganada"></td>
+                          </tr>
+                        </table> 
+                      </div>
                             
-                          </div>
+                            
+
                         </div>
             		    </div>
                   </div>

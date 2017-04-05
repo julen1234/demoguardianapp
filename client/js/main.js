@@ -110,24 +110,6 @@ angularRoutingApp.controller('loginController', function($scope, $rootScope, $ht
     }
 });
 
-angularRoutingApp.controller('customersCtrl', function($scope) {
-    $scope.names = [
-        {name:'Jani',country:'Norway'},
-        {name:'Carl',country:'Sweden'},
-        {name:'Margareth',country:'England'},
-        {name:'Hege',country:'Norway'},
-        {name:'Joe',country:'Denmark'},
-        {name:'Gustav',country:'Sweden'},
-        {name:'Birgit',country:'Denmark'},
-        {name:'Mary',country:'England'},
-        {name:'Kai',country:'Norway'}
-        ];
-    $scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
-    }
-
-});
-
 angularRoutingApp.controller('TimeCtrl', function($scope, $interval) {
   var tick = function() {
     $scope.clock = Date.now();

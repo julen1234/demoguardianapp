@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div ng-controller="ChatController" class="col-sm-8 col-xs-12 col-md-8 col-lg-8" >
+    <div ng-controller="ChatController" class="col-sm-7 col-xs-12 col-md-7 col-lg-7" >
         
           <div class="container-fluid" ng-controller="tradingViewController">
             <div ng-bind-html="player"></div>
@@ -12,16 +12,16 @@
             <div class="panel-body">
               
               <div class="btn-group btn-group-justified">
-                <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-down"></span> baja</a>
-                <a class="btn btn-primary"><span class="glyphicon glyphicon-time"><form class="form-vertical">
+                <a href="" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-down"></span> baja</a>
+                <a  href="" class="btn btn-primary"><span class="glyphicon glyphicon-time"><form class="form-vertical">
                 <div ng-controller='TimeCtrl'>
                   <p>{{ clock | date:'HH:mm:ss'}}</p>
                 </div>
               </form></span></a>
-                <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-up"></span> sube</a>
+                <a href="" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-up"></span> sube</a>
               </div>
                 <div class="container ">
-                  <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3">
+                  <div class="col-sm-2 col-xs-12 col-md- col-lg-2">
                 <div class="form-row">
                   <h5>Importe:</h5>
                   <div class="input-group" > 
@@ -30,7 +30,7 @@
                     </div>
                 </div>
               </div>
-              <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3">
+              <div class="col-sm-2 col-xs-12 col-md-2 col-lg-2">
                 <h5>Divisa:</h5>
                 <select  class="form-control">
                   
@@ -45,7 +45,7 @@
                         	<option >BGN</option>
                             </select> 
               </div>
-              <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3">
+              <div class="col-sm-2 col-xs-12 col-md-2 col-lg-2">
                 <h5>Cuenta de pago:</h5>
                 <select  class="form-control">
                 	        <option  selected>Paypal</option>
@@ -54,7 +54,7 @@
                         	<option >E-GOLD</option>
                             </select> 
               </div>
-              <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3">
+              <div class="col-sm-2 col-xs-12 col-md-2 col-lg-2">
                 <h5>Hora fin operacion:</h5>
                           <div class="row">
                           <div class='col-sm-6'>
@@ -85,7 +85,7 @@
           </div>
     
       </div>
-      <div class="container-fluid col-sm-4 col-xs-12 col-md-4 col-lg-4" ng-controller="ChatController">
+      <div class="container-fluid col-sm-5 col-xs-12 col-md-5 col-lg-5" ng-controller="ChatController">
         
         <div class="row form-group">
           
@@ -94,35 +94,35 @@
                 <span class="glyphicon glyphicon-bullhorn"> Panel de operaciones </span>
                 </div>
                 		<div class="panel-body"> 
-                		<div ng-include="'pages/header2.html'"></div>
+                		<!--div ng-include="'pages/header2.html'"></div-->
                 		<div class="well well-sm" style="height: 200px; overflow-y: auto;">
                         <table class="table">
                           <tr>
                             <th>Usuario</th>
                             <th>Fecha</th>
-                            <th>Hora inicio</th>
+                            <!--th>Hora inicio</th-->
                             <th>Hora fin</th>
                             <th>Importe</th>
                             <th>Mercado</th>
-                            <th>cuenta</th>
-                            <th>Up/Down</th>
-                            <th>Resultado</th>
+                            <!--th>cuenta</th-->
+                            <th>U/D</th>
+                            <th>Ganada</th>
                           </tr>
                           <tr ng-repeat="signal in signals">
                             <td ng-if="$odd" ng-bind="signal.username" style="background-color:#686868"></td>
                             <td ng-if="$even"  ng-bind="signal.username"></td>
                             <td ng-if="$odd"  ng-bind="signal.fecha" style="background-color:#686868"></td>
                             <td ng-if="$even"  ng-bind="signal.fecha"></td>
-                            <td ng-if="$odd" ng-model="signal.hora_inicio" style="background-color:#686868" ></td>
-                            <td ng-if="$even" ng-model="signal.hora_inicio"></td>
+                            <!--td ng-if="$odd" ng-model="signal.hora_inicio" style="background-color:#686868" ></td>
+                            <td ng-if="$even" ng-model="signal.hora_inicio"></td-->
                             <td ng-if="$odd" ng-bind="signal.hora_fin" style="background-color:#686868"></td>
                             <td ng-if="$even" ng-bind="signal.hora_fin"></td>
                             <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.importe"></td>
                             <td ng-if="$even" ng-bind="signal.importe"></td>
                             <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.mercado"></td>
                             <td ng-if="$even" ng-bind="signal.mercado"></td>
-                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.cuenta"></td>
-                            <td ng-if="$even" ng-bind="signal.cuenta"></td>
+                            <!--td ng-if="$odd" style="background-color:#686868" ng-bind="signal.cuenta"></td>
+                            <td ng-if="$even" ng-bind="signal.cuenta"></td-->
                             <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.up_down"></td>
                             <td ng-if="$even"  ng-bind="signal.up_down"></td>
                             <td ng-if="$odd"  style="background-color:#686868" ng-bind="signal.ganada"></td>
