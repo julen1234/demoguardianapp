@@ -17,7 +17,12 @@
     <script src="/js/timepicker.js"></script>
     <script src="/css/miestilo.css"></script>
     <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>			
+			
+    <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
     
                                                                                     
      <script>
@@ -49,7 +54,12 @@
         
         socket.on('signal', function (msg) {
           $scope.signals.push(msg);
-          console.log(msg);
+          angular.forEach($scope.signals, function(keyay) {
+            angular.forEach(keyay, function(key, value) {
+              console.log(key,value);
+            });
+          });
+          
           var audio = new Audio('http://soundbible.com/mp3/sms-alert-1-daniel_simon.mp3');
           audio.volume = 0.1;
           audio.play();

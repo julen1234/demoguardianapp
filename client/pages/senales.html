@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div ng-controller="ChatController" class="col-sm-6 col-xs-12 col-md-6 col-lg-6" >
+    <div ng-controller="ChatController" class="col-sm-8 col-xs-12 col-md-8 col-lg-8" >
         
           <div class="container-fluid" ng-controller="tradingViewController">
             <div ng-bind-html="player"></div>
@@ -21,17 +21,17 @@
                 <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-up"></span> sube</a>
               </div>
                 <div class="container ">
-                  <div class="col-sm-2 col-xs-4 col-md-2 col-lg-2">
+                  <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3">
                 <div class="form-row">
                   <h5>Importe:</h5>
                   <div class="input-group" > 
-                  <span class="input-group-addon" >$</span>
-                      <input type="number" value="100" style="width: 100px; height: 50px;" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="currency" id="c1" />
+                  <span class="input-group-addon" ><span class="glyphicon glyphicon-usd"></span></span>
+                      <input type="number" value="100" style="height: 50px;" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="currency form-control" id="c1" />
                     </div>
                 </div>
-                <button type="button" class="btn btn-warning" ><span class="glyphicon glyphicon-gbp"> Depósito:</span></button>
               </div>
-              <div class="col-sm-2 col-xs-4 col-md-2 col-lg-2">
+              <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3">
+                <h5>Divisa:</h5>
                 <select  class="form-control">
                   
                 	        <option  selected>EUR</option>
@@ -45,68 +45,94 @@
                         	<option >BGN</option>
                             </select> 
               </div>
-                          <div class="col-sm-2 col-xs-4 col-md-2 col-lg-2">
-                          <div class="bfh-timepicker">
-              <div class="input-prepend bfh-timepicker-toggle" data-toggle="bfh-timepicker">
-                <span class="add-on"><i class="icon-time"></i></span>
-                <input type="text" class="input-medium" readonly>
+              <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3">
+                <h5>Cuenta de pago:</h5>
+                <select  class="form-control">
+                	        <option  selected>Paypal</option>
+                        	<option>VISA</option>
+                        	<option >Skrill</option>
+                        	<option >E-GOLD</option>
+                            </select> 
               </div>
-              <div class="bfh-timepicker-popover">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td class="hour">
-                        <a class="next" href="#"><i class="icon-chevron-up"></i></a><br>
-                        <input type="text" class="input-mini" readonly><br>
-                        <a class="previous" href="#"><i class="icon-chevron-down"></i></a>
-                      </td>
-                      <td class="separator">:</td>
-                      <td class="minute">
-                        <a class="next" href="#"><i class="icon-chevron-up"></i></a><br>
-                        <input type="text" class="input-mini" readonly><br>
-                        <a class="previous" href="#"><i class="icon-chevron-down"></i></a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="col-sm-3 col-xs-12 col-md-3 col-lg-3">
+                <h5>Hora fin operacion:</h5>
+                          <div class="row">
+                          <div class='col-sm-6'>
+                              <div class="form-group">
+                                  <div class='input-group date' id='datetimepicker3'>
+                                      <input type='text' class="form-control" />
+                                      <span class="input-group-addon">
+                                          <span class="glyphicon glyphicon-time"></span>
+                                      </span>
+                                  </div>
+                              </div>
+                          </div>
+                          <script type="text/javascript">
+                              $(function () {
+                                  $('#datetimepicker3').datetimepicker({
+                                      format: 'LT'
+                         
+                                  });
+                              });
+                          </script>
+                        </div>
+                    </div>
               </div>
-            </div>
-              </div>
-              </div>
-              
+
+              <a href="#" class="btn btn-warning btn-lg btn-block"><span class="glyphicon glyphicon-gbp"> Depósito:</span></a>
             </div>
           </div>
           </div>
     
       </div>
-      <div class="container-fluid col-sm-6 col-xs-12 col-md-6 col-lg-6">
-            <div class="bs-component">
-              <table class="table table-striped table-hover ">
-                <thead>
-                  <tr>
-                    <th class="info">#</th>
-                    <th class="info">Column heading</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="signal in signals">
-                    <td>{{signal}}</td>
-                    <!--<td ng-if="$odd" class="success">
-                    {{ signal.up_down }}</td>
-                    <td ng-if="$even" class="danger">
-                    {{ signal.up_down }}</td>
-                    <td ng-if="$odd" class="warning">>
-                    {{ signal.mercado }}</td>
-                    <td ng-if="$even" class="active">
-                    {{ signal.mercado }}</td>
-                    <td ng-if="$scope.signal.ganada=='no'" class="warning">>
-                    {{ signal.ganada }}</td>
-                    <td ng-if="$scope.signal.ganada=='si'" class="active">
-                    {{ signal.ganada }}</td>-->>
-                  </tr>
-                </tbody>
-              </table> 
-            </div>
+      <div class="container-fluid col-sm-4 col-xs-12 col-md-4 col-lg-4" ng-controller="ChatController">
+        
+        <div class="row form-group">
+          
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <span class="glyphicon glyphicon-bullhorn"> Panel de operaciones </span>
+                </div>
+                		<div class="panel-body"> 
+                		<div ng-include="'pages/header2.html'"></div>
+                		<div class="well well-sm" style="height: 200px; overflow-y: auto;">
+                        <table class="table">
+                          <tr>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Hora inicio</th>
+                            <th>Hora fin</th>
+                            <th>Importe</th>
+                            <th>Mercado</th>
+                            <th>cuenta</th>
+                            <th>Up/Down</th>
+                            <th>Resultado</th>
+                          </tr>
+                          <tr ng-repeat="signal in signals">
+                            <td ng-if="$odd" ng-bind="signal.username" style="background-color:#686868"></td>
+                            <td ng-if="$even"  ng-bind="signal.username"></td>
+                            <td ng-if="$odd"  ng-bind="signal.fecha" style="background-color:#686868"></td>
+                            <td ng-if="$even"  ng-bind="signal.fecha"></td>
+                            <td ng-if="$odd" ng-model="signal.hora_inicio" style="background-color:#686868" ></td>
+                            <td ng-if="$even" ng-model="signal.hora_inicio"></td>
+                            <td ng-if="$odd" ng-bind="signal.hora_fin" style="background-color:#686868"></td>
+                            <td ng-if="$even" ng-bind="signal.hora_fin"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.importe"></td>
+                            <td ng-if="$even" ng-bind="signal.importe"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.mercado"></td>
+                            <td ng-if="$even" ng-bind="signal.mercado"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.cuenta"></td>
+                            <td ng-if="$even" ng-bind="signal.cuenta"></td>
+                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.up_down"></td>
+                            <td ng-if="$even"  ng-bind="signal.up_down"></td>
+                            <td ng-if="$odd"  style="background-color:#686868" ng-bind="signal.ganada"></td>
+                            <td ng-if="$even"  ng-bind="signal.ganada"></td>
+                          </tr>
+                        </table> 
+                      </div>
+                    </div>
+                  </div> 
+                 </div>     
   <div ng-controller="ChatController" >
     <!-- /example -->
         
