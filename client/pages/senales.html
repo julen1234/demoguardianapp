@@ -5,20 +5,21 @@
           <div class="container-fluid" ng-controller="tradingViewController">
             <div ng-bind-html="player"></div>
           </div>
-          
+        
+        <form class="form-horizontal">
           <div class="container-fluid">
           <div class="panel panel-primary">
             <div class="panel-heading">Operacion</div>
             <div class="panel-body">
               
               <div class="btn-group btn-group-justified">
-                <a href="" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-down"></span> baja</a>
-                <a  href="" class="btn btn-primary"><span class="glyphicon glyphicon-time"><form class="form-vertical">
+                <a href="" type="submit" ng-click="sendSignalDown()"  class="btn btn-success"><span class="glyphicon glyphicon-thumbs-down"></span> baja</a>
+                <a  href="" class="btn btn-primary"><span class="glyphicon glyphicon-time">
                 <div ng-controller='TimeCtrl'>
                   <p>{{ clock | date:'HH:mm:ss'}}</p>
                 </div>
-              </form></span></a>
-                <a href="" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-up"></span> sube</a>
+              </span></a>
+                <a href="" ng-click="sendSignalUp()" class="btn btn-danger" value='up'><span class="glyphicon glyphicon-thumbs-up"></span> sube</a>
               </div>
                 <div class="container ">
                   <div class="col-sm-2 col-xs-12 col-md- col-lg-2">
@@ -26,19 +27,19 @@
                   <h5>Importe:</h5>
                   <div class="input-group" > 
                   <span class="input-group-addon" ><span class="glyphicon glyphicon-usd"></span></span>
-                      <input type="number" value="100" style="height: 50px;" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="currency form-control" id="c1" />
+                      <input type="number" value="100" style="height: 50px;" min="0" step="1" data-number-to-fixed="2" ng-model="userSignal.importe" data-number-stepfactor="100" class="currency form-control" id="c1" />
                     </div>
                 </div>
               </div>
               <div class="col-sm-2 col-xs-12 col-md-2 col-lg-2">
                 <h5>Divisa:</h5>
-                <select  class="form-control">
+                <select ng-model="userSignal.mercado"class="form-control">
                   
-                	        <option  selected>EUR</option>
+                	        <option selected>EURUSD</option>
                         	<option>USD</option>
                         	<option >GBP</option>
                         	<option >JPY</option>
-                            <option >RUB</option>
+                          <option >RUB</option>
                         	<option >AUD</option>
                         	<option >CAD</option>
                         	<option >CHF</option>
@@ -47,7 +48,7 @@
               </div>
               <div class="col-sm-2 col-xs-12 col-md-2 col-lg-2">
                 <h5>Cuenta de pago:</h5>
-                <select  class="form-control">
+                <select ng-model="userSignal.cuenta" class="form-control">
                 	        <option  selected>Paypal</option>
                         	<option>VISA</option>
                         	<option >Skrill</option>
@@ -59,22 +60,14 @@
                           <div class="row">
                           <div class='col-sm-6'>
                               <div class="form-group">
-                                  <div class='input-group date' id='datetimepicker3'>
-                                      <input type='text' class="form-control" />
+                                  <div class='input-group date'>
+                                      <input type="time" ng-model="userSignal.hora_fin"  value="{{ clock | date:'HH:mm:ss'}}">
                                       <span class="input-group-addon">
                                           <span class="glyphicon glyphicon-time"></span>
                                       </span>
                                   </div>
                               </div>
                           </div>
-                          <script type="text/javascript">
-                              $(function () {
-                                  $('#datetimepicker3').datetimepicker({
-                                      format: 'LT'
-                         
-                                  });
-                              });
-                          </script>
                         </div>
                     </div>
               </div>
@@ -83,8 +76,10 @@
             </div>
           </div>
           </div>
-    
+         </form>
       </div>
+      
+      
       <div class="container-fluid col-sm-5 col-xs-12 col-md-5 col-lg-5" ng-controller="ChatController">
         
         <div class="row form-group">
@@ -111,8 +106,8 @@
                           <tr ng-repeat="signal in signals">
                             <td ng-if="$odd" ng-bind="signal.username" style="background-color:#686868"></td>
                             <td ng-if="$even"  ng-bind="signal.username"></td>
-                            <td ng-if="$odd"  ng-bind="signal.fecha" style="background-color:#686868"></td>
-                            <td ng-if="$even"  ng-bind="signal.fecha"></td>
+                            <td ng-if="$odd"  ng-bind="signal.fecha | date:'HH:mm:ss'" style="background-color:#686868"></td>
+                            <td ng-if="$even"  ng-bind="signal.fecha | date:'dd/MM/yyyy hh:mm:ss'"></td>
                             <!--td ng-if="$odd" ng-model="signal.hora_inicio" style="background-color:#686868" ></td>
                             <td ng-if="$even" ng-model="signal.hora_inicio"></td-->
                             <td ng-if="$odd" ng-bind="signal.hora_fin" style="background-color:#686868"></td>
@@ -176,9 +171,9 @@
                                 <tbody  >
                                 <tr ng-repeat="msg in messages">
                                 <td ng-bind="msg.name"></td>
-                                <span ng-show="msg.destacado == true" class="bg-danger">
-                                  <td ng-bind="msg.text"  ></td>
-                                  <td ng-bind="msg.destacado"  ></td>
+                                <span ng-if="msg.destacado == true" class="bg-danger">
+                                  <td ng-bind="msg.text" class="blue" ></td>
+                                  <td ng-bind="msg.destacado" class="blue" ></td>
                                 </span>  
                                 </tr>
                               </tbody>
@@ -191,7 +186,7 @@
                     <form ng-submit="send()">
                       <input type="text" ng-model="text" placeholder="Message">
                       <input type="submit" class="btn btn-primary" value="Send" ng-disabled="!text">
-                      <button type="button" ng-click="send2()" class="btn btn-danger" value="Alerta" ng-disabled="!text">Danger</button>
+                      <button ng-click="send2()" class="btn btn-danger" value="Alerta" ng-disabled="!text">Danger</button>
                     </div>
                     </form>
                 </div>

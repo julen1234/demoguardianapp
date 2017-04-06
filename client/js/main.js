@@ -110,9 +110,9 @@ angularRoutingApp.controller('loginController', function($scope, $rootScope, $ht
     }
 });
 
-angularRoutingApp.controller('TimeCtrl', function($scope, $interval) {
+angularRoutingApp.controller('TimeCtrl', function($rootScope,$scope, $interval) {
   var tick = function() {
-    $scope.clock = Date.now();
+    $rootScope.clock = Date.now();
   }
   tick();
   $interval(tick, 1000);

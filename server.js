@@ -128,6 +128,11 @@ io.on('connection', function (socket) {
       updateRoster();
     });
 
+    socket.on('signal',function(alertaRecibida){
+      console.log(alertaRecibida);
+      io.sockets.emit('signal',alertaRecibida);
+    });
+    
     socket.on('message', function (msg) {
       var text = String(msg || '');
 
