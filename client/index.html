@@ -157,7 +157,7 @@
 <nav class="navbar navbar-default" ng-hide="globalUsername">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -168,11 +168,11 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Traders</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#contacto" data-toggle="collapse" data-target=".navbar-collapse">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#signup"><span class="glyphicon glyphicon-user"></span> Registro</a></li>
-        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+        <li><a href="#signup" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-user"></span> Registro</a></li>
+        <li><a href="#login" data-toggle="collapse" data-target=".navbar-collapse"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -182,7 +182,7 @@
 <nav class="navbar navbar-default" ng-show="globalUsername">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -192,18 +192,18 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Traders</a></li>
-        <li><a href="#senales">Señales</a></li>
+        <li class="active"><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Traders</a></li>
+        <li><a href="#senales" data-toggle="collapse" data-target=".navbar-collapse">Señales</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{globalUsername | capitalize}}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li class="dropdown-header">Usuario</li>
-            <li><a href="#perfil">Perfil</a></li>
-            <li><a href="#">Cuenta</a></li>
+            <li><a href="#perfil" data-toggle="collapse" data-target=".navbar-collapse">Perfil</a></li>
+            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Cuenta</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Calendario</a></li>
+            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Calendario</a></li>
           </ul>
         </li>
         <li><a href="#traders" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
