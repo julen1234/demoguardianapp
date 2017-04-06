@@ -8,16 +8,16 @@
               <div class="panel-heading"><span class="glyphicon glyphicon-filter"> Filtro</span></div>
               <div class="panel-body" >
                 
-                <label>Nombre: </label>
+                <h4>Nombre:</h4>
                 <input type="text" placeholder="nombre" ng-model="search.nombre">
-                <label>Estrategia: </label>
+                <h4>Estrategia: </h4>
                 <input type="text" placeholder="estrategia" ng-model="search.estrategia">
               </div>
             </div>
         </div>
         <div class="container-fluid" style=" height: 420px;  overflow-y: auto;">
             
-		  <div class="table-container">
+		  <div class="table-container" ng-controller="mainController">
 							<table class="table table-filter" class="media">
 								<tbody>
 									<tr  ng-repeat="trader in traders | filter:search" div class="panel panel-warning">
@@ -37,31 +37,22 @@
 												</div>
 											</div>
 										</td>
-										
 										<td>
 										        <span class="label label-info">{{trader.n_usuarios}} seguidores</span>
                                                 <span class="label label-info">ROI -> {{trader.roi}}</span>
-										</td>
-										<td>
                                                 <span class="label label-warning">{{trader.n_ops}} operaciones</span>
                                                 <span class="label label-warning">{{trader.ganancia}} € ganados</span>
                                                 <span class="label label-warning">{{trader.pip}} pips (media de {{trader.media_pip}})</span>
-                                               
-												
-											</div>
-											</div>
-										</td>
-										<td>
-										     <div class="ckbox">
+					
+
+										     <div class="ckbox pull-bottom">
                                                     <label for="checkbox1">Seguir trader</label>
                                                     
                                                     <input type="checkbox" id="checkbox1">   
-												
+		 
 										</td>
-										<td>
-										    
-										</td>
-
+                                            	</div>
+											</div>
 										</div>
                                       </div>
 									</tr>
@@ -74,33 +65,53 @@
             </div>
 	
 	
-	<div class="col-sm-5 col-xs-12 col-md-5 col-lg-5">
+	<div class="col-sm-5 col-xs-12 col-md-5 col-lg-5" ng-controller="mainController">
         <div class="container-fluid" >
             <div class="panel panel-primary" >
               <div class="panel-heading">Perfil</div>
               <div class="panel-body">
+                  
+                  <div class="panel panel-default">
+                            <div class="panel-body">Nombre
+    	                        <tbody>
+									<tr data-status="pagado">
+										<td>
+                                        <div class="media">
+                                        <img class="img-circle media-object" style="padding: 0; margin: 0;" src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg">
+											
+												<div class="media-body">
+													
+													<h4 class="title">
+														Lorem Impsum
+													</h4>
+													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+												</div>
+											</div>
+										</td>
+										<td>
+										    <p href="#" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-comment"></span> Message</p>
+                                            <p class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-heart"></span> Favorite</p>
+                                            <p href="#" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow</p>
+                                            <p href="#" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-usd"></span>cuenta</p>
+
+										</td>
+									</tr>
+                                   </tbody>
+    
+                                </div>
+                          </div>
               
-                 <div class="row-form" ng-controller="mainController" >
-                     <div class="container col-sm-12 col-xs-12 col-md-12 col-lg-12"></div>
-                     	<div class="container col-sm-2 col-xs-2 col-md-2 col-lg-2" >
-                             <img class="img-circle media-object" style="padding: 0; margin: 0;" src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg">                           </div>
-                        <div class="container col-sm-10 col-xs-12 col-md-10 col-lg-10" >   
-                            <div class="panel-body">   
-                                <p>Nombre</p>
-                                <small>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</small>
-                             </div>
-                         </div>
-                         <div class="container col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                          <div class="row-fluid">
+                         <div class="container col-sm-12 col-xs-12 col-md-6 col-lg-6">
                              <p>Ultimas operaciones</p>
-                             <zingchart id = "myChart" zc-json = "myJson" zc-height = "20%" zc-width = "50%" ></zingchart> 
-                             <zingchart id="chart-1" zc-json="myJsonDos" zc-width="50%" zc-height="20%"></zingchart>
-
-
-
+                             <zingchart id = "myChart" zc-json = "myJson" zc-height = "250px" zc-width = "250px" ></zingchart> 
+                             
                         </div>
-                        <div class="container col-sm-6 col-xs-12 col-md-6 col-lg-6">
-                            
+                        <div class="container col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                            <p>Balance</p>
+                            <zingchart id="chart-1" zc-json="myJsonDos" zc-width="250px" zc-height="250px"></zingchart>
                          </div>
+                        </div>
                         </div>
               </div>
             </div>

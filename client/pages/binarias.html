@@ -1,5 +1,64 @@
+<div ng-include="'pages/header.html'"></div>
+<div class="container">
 <div ng-include="'header.html'"></div>
-<div class="jumbotron text-center">  
-  <h1>Binarias</h1>
-  <p>{{ message }}</p>
+ <div class="well well-sm" style="background-color: #597899;">
+		      <div class="container-fluid" >
+            <div class="panel panel-primary">
+              <div class="panel-heading"><span class="glyphicon glyphicon-filter"> Filtro</span></div>
+              <div class="panel-body" >
+                
+                <h4>Nombre:</h4>
+                <input type="text" placeholder="nombre" ng-model="search.nombre">
+                <h4>Estrategia: </h4>
+                <input type="text" placeholder="estrategia" ng-model="search.estrategia">
+              </div>
+            </div>
+        </div>
+        <div class="container-fluid" style=" height: 420px;  overflow-y: auto;">
+            
+		  <div class="table-container" ng-controller="mainController">
+							<table class="table table-filter" class="media">
+								<tbody>
+									<tr  ng-repeat="trader in traders | filter:search" div class="panel panel-warning">
+										
+										<td>
+	    
+								        <div class="panel-body" >
+											<div class="media">
+												<a href="#" class="pull-left">
+													<img class="img-circle media-object" src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+												</a>
+												<div class="media-body">
+													<h4 class="title">{{trader.nombre}}  <a href="javascript:;" class="star"><i class="glyphicon glyphicon-star"></i></a><a href="javascript:;" class="star"><i class="glyphicon glyphicon-star"></i></a><a href="javascript:;" class="star"><i class="glyphicon glyphicon-star"></i></a></h4>
+													<h5 class="title">Estrategia</h5>
+											        <p></p><span class="label label-info">{{trader.estrategia}}</span></p>
+													<small class="summary">Ut enim ad minim veniam...</small>
+												</div>
+											</div>
+										</td>
+										<td>
+										        <span class="label label-info">{{trader.n_usuarios}} seguidores</span>
+                                                <span class="label label-info">ROI -> {{trader.roi}}</span>
+                                                <span class="label label-warning">{{trader.n_ops}} operaciones</span>
+                                                <span class="label label-warning">{{trader.ganancia}} € ganados</span>
+                                                <span class="label label-warning">{{trader.pip}} pips (media de {{trader.media_pip}})</span>
+					
+
+										     <div class="ckbox pull-bottom">
+                                                    <label for="checkbox1">Seguir trader</label>
+                                                    
+                                                    <input type="checkbox" id="checkbox1">   
+		 
+										</td>
+                                            	</div>
+											</div>
+										</div>
+                                      </div>
+									</tr>
+                  
+                              </tbody>
+                      </table>
+                      </div>
+                     </div>
+                </div>
 </div>

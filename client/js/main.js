@@ -184,35 +184,6 @@ angularRoutingApp.controller('loginController', function($scope, $rootScope, $ht
     }
 });
 
-angularRoutingApp.controller("myController", function($scope) {
-    $scope.myData = [
-        ["f1", 4, 8, 15, 16, 23, 42],
-        ["f2", 3, 1, 4, 1, 5, 9, 2, 6, 5]
-    ];
-});
-
-
-angularRoutingApp.directive("c3Graph", function() {
-    var linkFunction = function(scope) {
-        c3.generate({
-            bindto: '#chart',
-            data: {
-                columns: scope.data
-            }
-        });
-    };
-
-    return {
-        link: linkFunction,
-        scope: {
-            data: '='
-        },
-        template: '<div id="chart"></div>'
-    };
-});
-
-
-
 angularRoutingApp.controller('TimeCtrl', function($rootScope,$scope, $interval) {
   var tick = function() {
     $rootScope.clock = Date.now();
