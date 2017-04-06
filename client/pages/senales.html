@@ -11,14 +11,13 @@
           <div class="panel panel-primary">
             <div class="panel-heading">Operacion</div>
             <div class="panel-body">
-              
-              <div class="btn-group btn-group-justified">
-                <a href="" type="submit" ng-click="sendSignalDown()"  class="btn btn-success"><span class="glyphicon glyphicon-thumbs-down"></span> baja</a>
-                <a  href="" class="btn btn-primary"><span class="glyphicon glyphicon-time">
+              <span  href="" class="btn btn-default btn-lg btn-block" height: "50 px"><span class="glyphicon glyphicon-time">
                 <div ng-controller='TimeCtrl'>
                   <p>{{ clock | date:'HH:mm:ss'}}</p>
                 </div>
-              </span></a>
+              </span></span>
+              <div class="btn-group btn-group-justified">
+                <a href="" type="submit" ng-click="sendSignalDown()"  class="btn btn-success"><span class="glyphicon glyphicon-thumbs-down"></span> baja</a>
                 <a href="" ng-click="sendSignalUp()" class="btn btn-danger" value='up'><span class="glyphicon glyphicon-thumbs-up"></span> sube</a>
               </div>
                 <div class="row">
@@ -80,7 +79,9 @@
           
             <div class="panel panel-primary">
               <div class="panel-heading">
-                <span class="glyphicon glyphicon-bullhorn"> Operaciones  <input type="text" placeholder="nombre" class="form-control right pull-right" ng-model="search.nombre"> </span>
+                
+                <span class="glyphicon glyphicon-bullhorn"> Operaciones   </span>
+                <input type="text" placeholder="nombre" class="form-control right pull-right" ng-model="search">
                 </div>
                 		<div class="panel-body"> 
                 		<!--div ng-include="'pages/header2.html'"></div-->
@@ -97,7 +98,7 @@
                             <!--th>cuenta</th-->
                             <th>U/D</th>
                           </tr>
-                          <tr ng-repeat="signal in signals">
+                          <tr ng-repeat="signal in signals | filter:search">
                             <td><a href="" class="btn btn-primary" ng-click="sendSignal(signal)"></a></td>
                             <td ng-if="$odd" ng-bind="signal.username" style="background-color:#375A7F"></td>
                             <td ng-if="$even"  ng-bind="signal.username" style="background-color:#597899"></td>
@@ -159,12 +160,13 @@
                   </ul>
                   
                     <ul class="chat" style=" height: 200px;  overflow-y: auto;">
+                      
                             <div class="chat-body clearfix right"><span class="chat-img pull-right">
                                 <table class="table table-striped table-bordered" >
                                 <tbody>
                                 <tr ng-repeat="msg in messages">
-                                  <td ng-bind="msg.name"></td>
-                                  <td ng-bind="msg.text"  ></td>
+                                  <td ng-bind="msg.name" class="panel-heading"></td>
+                                  <td ng-bind="msg.text"  class="panel-body"></td>
                                 </span>  
                                 </tr>
                               </tbody>

@@ -35,6 +35,7 @@
         $scope.name = $rootScope.globalUsername;
         $scope.text = '';
         $scope.userSignal;
+        $scope.search;
         
 
         socket.on('connect', function () {
@@ -62,7 +63,9 @@
               console.log(key,value);
             });
           });
-          
+          setTimeout(function(){ 
+
+          }, 3000);
           var audio = new Audio('http://soundbible.com/mp3/sms-alert-5-daniel_simon.mp3');
           audio.volume = 0.1;
           audio.play();
