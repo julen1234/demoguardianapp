@@ -1,23 +1,27 @@
-<div class="row">
-    <div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" >
-        <div class="container-fluid">
-           <ul class="nav nav-pills">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Profile</a></li>
-              <li class="disabled"><a href="#">Disabled</a></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  Dropdown <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </li>
-            </ul>
-        </div>
+	<div class="Container">
+        <div class="container-fluid" >
+            <div class="panel panel-primary" >
+              <div class="panel-heading">Perfil</div>
+              <div class="panel-body">
+              
+                 <div class="row-form" ng-controller="mainController" >
+                     <div class="container col-sm-12 col-xs-12 col-md-12 col-lg-12"></div>
+                     	<div class="container col-sm-2 col-xs-2 col-md-2 col-lg-2" >
+                             <img class="img-circle media-object" style="padding: 0; margin: 0;" height="150" width="90" src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/256/blue-user-icon.png">                           </div>
+                        <div class="container col-sm-10 col-xs-12 col-md-10 col-lg-10" >   
+                            <div class="panel-body">   
+                                <p>Nombre</p>
+                                <small>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</small>
+                             </div>
+                         </div>
+                         <div class="container col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                             <p>Ultimas operaciones</p>
+                             <zingchart id = "myChart" zc-json = "myJson" zc-height = 300 zc-width = 300 ></zingchart> 
+                        </div>
+                        <div class="container col-sm-6 col-xs-12 col-md-6 col-lg-6">
+                            
+                         </div>
+                        </div>
+              </div>
+            </div>
     </div>
-</div>

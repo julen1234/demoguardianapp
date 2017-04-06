@@ -11,27 +11,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/jquery.min.js"></script>
     <script  src=https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css></script>
     <script src="/js/main.js"></script>
-    <script src="/js/timepicker.js"></script>
     <script src="/js/moment.js"></script>
     <script src="/css/miestilo.css"></script>
     <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-scroll-glue/2.2.0/scrollglue.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
+    <script src = "https://cdn.zingchart.com/zingchart.min.js" ></script>  
+    <script src = "https://cdn.zingchart.com/angular/zingchart-angularjs.js" ></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>			
 			
-    <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
-    <script src="https://github.com/fusioncharts/angular-fusioncharts/blob/master/dist/angular-fusioncharts.min.js"></script>
-    <script src="https://github.com/jtblin/angular-chart.js"></script>
-    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-    <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
     
     
     <script>
-      function ChatController($rootScope, $scope, $http) {
+      angularRoutingApp.controller('ChatController', function ChatController( $scope, $rootScope, $anchorScroll, $http, $location) {
         var socket = io.connect();
           
         $scope.messages = [];
@@ -52,6 +47,7 @@
           audio.volume = 0.1;
           audio.play();
           $scope.$apply();
+          
         });
 
         socket.on('roster', function (names) {
@@ -117,7 +113,6 @@
           $scope.userSignal.up_down = "down";
           console.log('Sending signal:', $scope.userSignal);
           socket.emit('signal', $scope.userSignal);
-          $scope.userSignal = {};
         };
         
         $scope.send2 = function send2() {
@@ -131,7 +126,13 @@
           socket.emit('identify', $scope.name);
         };
         
-      }
+        $scope.seguirSignal = function seguirSignal(signal){
+          alert(signal);
+          $scope.userSignal = signal;
+          $scope.username = $rootScope.globalUsername;
+        };
+        
+      });
     </script>
     <title>GuardianTrader</title>
   </head>
@@ -153,8 +154,8 @@
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#signup"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
-        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="#signup"><span class="glyphicon glyphicon-user"></span> Registro</a></li>
+        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -175,7 +176,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Traders</a></li>
-        <li><a href="#senales">Senales</a></li>
+        <li><a href="#senales">Señales</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
@@ -188,7 +189,7 @@
             <li><a href="#">Calendario</a></li>
           </ul>
         </li>
-        <li><a href="#traders" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li><a href="#traders" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

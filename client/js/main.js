@@ -1,5 +1,5 @@
 // Creación del módulo
-var angularRoutingApp = angular.module('angularRoutingApp', ['ngRoute', 'ngCookies']);
+var angularRoutingApp = angular.module('angularRoutingApp', ['ngRoute', 'ngCookies','zingchart-angularjs']);
 
 // Configuración de las rutas
 angularRoutingApp.config(function($routeProvider) {
@@ -55,6 +55,14 @@ angularRoutingApp.filter('capitalize', function() {
     
 angularRoutingApp.controller('mainController', function($scope, $http, $cookieStore, $rootScope) {
     $scope.message = 'Hola, Mundo!';
+    $scope.myJson = {  
+      type : 'line' ,  
+      series : [  
+        { values : [ 54 , 23 , 34 , 23 , 43 ] },  
+        { values : [ 10 , 15 , 16 , 20 , 40 ] }  
+      ]  
+    };
+
     $http.get('/traders').then(function(response){
         $scope.traders = response.data;
     });
@@ -63,7 +71,7 @@ angularRoutingApp.controller('mainController', function($scope, $http, $cookieSt
         $cookieStore.remove('username');
         $rootScope.globalToken = "";
         $rootScope.globalUsername = "";
-    };
+    }
 });
 
 angularRoutingApp.controller('signupController', function($scope, $http, $location) {

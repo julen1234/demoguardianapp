@@ -417,8 +417,8 @@
       <label class="col-lg-2 control-label">Genero</label>
       <div class="col-lg-8">
         <select  class="form-control" ng-model="genero">
-            <option value="M" selected>MALE</option>
-  	        <option value="F">FEMALE</option>
+            <option value="M" selected>Hombre</option>
+  	        <option value="F">Mujer</option>
         </select> 
       </div>
     </div>
@@ -438,7 +438,7 @@
     </div>
     
     <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <label for="inputPassword" class="col-lg-2 control-label">Contraseña</label>
       <div class="col-lg-8">
         <input class="form-control" id="inputPassword" placeholder="Password" type="password" ng-model="password">
         
@@ -454,13 +454,10 @@
     </div>
     
     <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Datos cuenta</label>
-      <div class="col-lg-1">
-        <label>Divisa</label>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                <h5>Divisa</h5>
-    <select  class="form-control" ng-model="divisa">
+      <label class="col-lg-2 control-label">Datos cuenta</label>
+      <div class="col-lg-8">
+
+          <select  class="form-control" ng-model="divisa">
 
                 	        <option  selected>EUR</option>
                         	<option>USD</option>
@@ -472,12 +469,14 @@
                         	<option >CHF</option>
                         	<option >BGN</option>
                             </select> 
-      </div>
-      <div class="col-lg-1 col-md-1">
-        <label>Apalancamiento</label>
         </div>
-        <div class="col-lg-3 col-md-3">
-        <select  class="form-control selectpicker" name="apalancamiento" ng-model="apalancamiento">
+      </div>
+      
+      <div class="form-group">
+      <label class="col-lg-2 control-label">Apalancamiento</label>
+      <div class="col-lg-8">
+
+          <select  class="form-control" name="apalancamiento" ng-model="apalancamiento">
                 	       <option value="1:1">1:1</option>
                         	<option value="25:1">25:1</option>
                         	<option value="50:1">50:1</option>
@@ -487,15 +486,17 @@
                         	<option value="400:1">400:1</option>
                         	<option value="500:1">500:1</option>
                         	<option value="1000:1">1000:1</option>
-                            </select>
-                            </select> 
+        </select>
         </div>
-    </div>
+      </div>
+      
+      
+      
     <div class="form-group">
       <div class="col-lg-8 col-lg-offset-2">
           <div class="checkbox">
-          <label>
-            <input type="checkbox">  Acepto los terminos
+            <input type="checkbox">  
+            <label>             Acepto los terminos
           </label>
         </div>
         <br>
