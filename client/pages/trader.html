@@ -15,37 +15,55 @@
               </div>
             </div>
         </div>
-        <div class="container-fluid" >
+        <div class="container-fluid" style=" height: 420px;  overflow-y: auto;">
             
 		  <div class="table-container">
 							<table class="table table-filter" class="media">
 								<tbody>
-									<tr  ng-repeat="trader in traders | filter:search">
+									<tr  ng-repeat="trader in traders | filter:search" div class="panel panel-warning">
+										
 										<td>
+	    
+								        <div class="panel-body" >
 											<div class="media">
 												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+													<img class="img-circle media-object" src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
 												</a>
 												<div class="media-body">
-													<h4 class="title">Estrategia </h4>
-											    <span class="label label-info">{{trader.estrategia}}</span>
-												
-													<p class="summary">Ut enim ad minim veniam, quis nostrud...</p>
+													<h4 class="title">{{trader.nombre}}  <a href="javascript:;" class="star"><i class="glyphicon glyphicon-star"></i></a><a href="javascript:;" class="star"><i class="glyphicon glyphicon-star"></i></a><a href="javascript:;" class="star"><i class="glyphicon glyphicon-star"></i></a></h4>
+													<h5 class="title">Estrategia</h5>
+											        <p></p><span class="label label-info">{{trader.estrategia}}</span></p>
+													<small class="summary">Ut enim ad minim veniam...</small>
 												</div>
 											</div>
 										</td>
+										
 										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
+										        <span class="label label-info">{{trader.n_usuarios}} seguidores</span>
+                                                <span class="label label-info">ROI -> {{trader.roi}}</span>
 										</td>
 										<td>
-										    <div class="ckbox">
-												<input type="checkbox" id="checkbox1">
-												<label for="checkbox1"></label>
+                                                <span class="label label-warning">{{trader.n_ops}} operaciones</span>
+                                                <span class="label label-warning">{{trader.ganancia}} € ganados</span>
+                                                <span class="label label-warning">{{trader.pip}} pips (media de {{trader.media_pip}})</span>
+                                               
+												
 											</div>
-											
+											</div>
 										</td>
+										<td>
+										     <div class="ckbox">
+                                                    <label for="checkbox1">Seguir trader</label>
+                                                    
+                                                    <input type="checkbox" id="checkbox1">   
+												
+										</td>
+										<td>
+										    
+										</td>
+
+										</div>
+                                      </div>
 									</tr>
                   
                               </tbody>
@@ -65,7 +83,7 @@
                  <div class="row-form" ng-controller="mainController" >
                      <div class="container col-sm-12 col-xs-12 col-md-12 col-lg-12"></div>
                      	<div class="container col-sm-2 col-xs-2 col-md-2 col-lg-2" >
-                             <img class="img-circle media-object" style="padding: 0; margin: 0;" height="150" width="90" src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/256/blue-user-icon.png">                           </div>
+                             <img class="img-circle media-object" style="padding: 0; margin: 0;" src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg">                           </div>
                         <div class="container col-sm-10 col-xs-12 col-md-10 col-lg-10" >   
                             <div class="panel-body">   
                                 <p>Nombre</p>
@@ -74,7 +92,11 @@
                          </div>
                          <div class="container col-sm-12 col-xs-12 col-md-12 col-lg-12">
                              <p>Ultimas operaciones</p>
-                             <zingchart id = "myChart" zc-json = "myJson" zc-height = 300 zc-width = 300 ></zingchart> 
+                             <zingchart id = "myChart" zc-json = "myJson" zc-height = "20%" zc-width = "50%" ></zingchart> 
+                             <zingchart id="chart-1" zc-json="myJsonDos" zc-width="50%" zc-height="20%"></zingchart>
+
+
+
                         </div>
                         <div class="container col-sm-6 col-xs-12 col-md-6 col-lg-6">
                             

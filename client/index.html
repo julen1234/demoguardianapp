@@ -82,6 +82,9 @@
           $scope.userSignal.up_down = "up";
           console.log('Sending signal:', $scope.userSignal);
           socket.emit('signal', $scope.userSignal);
+          $http.post('https://nodeguardianapp-josmaxwell.c9users.io/signals', newUser).then(function() {
+            alert('Señal guardada!')
+          });
           /*
           var url = 'http://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+alertaRecibida.mercado+'&interval=1min&apikey=4429';
           console.log(url);
@@ -113,6 +116,20 @@
           $scope.userSignal.up_down = "down";
           console.log('Sending signal:', $scope.userSignal);
           socket.emit('signal', $scope.userSignal);
+          $http.post('https://nodeguardianapp-josmaxwell.c9users.io/signals', newUser).then(function() {
+            alert('Señal guardada!')
+          });
+        };
+        
+        $scope.sendSignal = function sendSignal(signal) {
+          console.log($rootScope.username)
+          signal.username = $scope.name;
+          signal.fecha = Date.now();
+          console.log('Sending signal:',signal);
+          socket.emit('signal', signal);
+          $http.post('https://nodeguardianapp-josmaxwell.c9users.io/signals', newUser).then(function() {
+            alert('Señal guardada!')
+          });
         };
         
         $scope.send2 = function send2() {

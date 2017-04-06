@@ -87,18 +87,18 @@
                 		<div class="well well-sm" style="height: 200px; overflow-y: auto;">
                         <table class="table">
                           <tr>
+                            <th>Copia</th>
                             <th>Usuario</th>
-                            <th>Fecha</th>
                             <!--th>Hora inicio</th-->
-                            <th>Hora fin</th>
+                            <th>Fecha</th>
+                            <th>Minutos</th>
                             <th>Importe</th>
                             <th>Mercado</th>
                             <!--th>cuenta</th-->
                             <th>U/D</th>
-                            <th>Ganada</th>
                           </tr>
                           <tr ng-repeat="signal in signals">
-                            <td><a href="" class="btn btn-primary" ng-click="seguirSignal(signal)"></a></td>
+                            <td><a href="" class="btn btn-primary" ng-click="sendSignal(signal)"></a></td>
                             <td ng-if="$odd" ng-bind="signal.username" style="background-color:#375A7F"></td>
                             <td ng-if="$even"  ng-bind="signal.username" style="background-color:#597899"></td>
                             <td ng-if="$odd"  ng-bind="signal.fecha | date:'HH:mm:ss'" style="background-color:#375A7F"></td>

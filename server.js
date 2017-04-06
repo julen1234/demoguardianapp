@@ -77,6 +77,27 @@ router.post('/users',function(req,res,next){
   });
 });
 
+router.post('/signals',function(req,res,next){
+  db.collection('signals',function(err,usersCollection){
+    
+      var newSignal = {
+      username:req.body.username,
+      hora_inicio: '00:31:48',
+      hora_fin: '00:35:48',
+      fecha: '04/04/2017',
+      up_down: 'up',
+      mercado: 'EURUSD',
+      importe: '750',
+      cuenta: 'paypal',
+      ganada: 'si' 
+      }
+      usersCollection.insert(newSignal, {w:1}, function(err){
+          res.send();
+      });
+
+  });
+});
+
 router.put('/users/signin',function(req,res,next){
   db.collection('users',function(err,usersCollection){
     //Se obtiene el usuario de la base de datos
