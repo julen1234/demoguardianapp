@@ -15,6 +15,7 @@
     <script  src=https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css></script>
     <script src="/js/main.js"></script>
     <script src="/js/timepicker.js"></script>
+    <script src="/js/moment.js"></script>
     <script src="/css/miestilo.css"></script>
     <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
@@ -23,17 +24,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>			
 			
     <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+    <script src="https://github.com/fusioncharts/angular-fusioncharts/blob/master/dist/angular-fusioncharts.min.js"></script>
+    <script src="https://github.com/jtblin/angular-chart.js"></script>
+    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+    
     
     <script>
-      function ChatController($rootScope, $scope) {
+      function ChatController($rootScope, $scope, $http) {
         var socket = io.connect();
-        
+          
         $scope.messages = [];
         $scope.signals = [];
         $scope.roster = [];
         $scope.name = $rootScope.globalUsername;
         $scope.text = '';
-        $scope.userSignal = {};
+        $scope.userSignal;
+        
 
         socket.on('connect', function () {
           $scope.setName();
@@ -60,7 +67,7 @@
             });
           });
           
-          var audio = new Audio('http://soundbible.com/mp3/sms-alert-1-daniel_simon.mp3');
+          var audio = new Audio('http://soundbible.com/mp3/sms-alert-5-daniel_simon.mp3');
           audio.volume = 0.1;
           audio.play();
           $scope.$apply();
@@ -79,7 +86,28 @@
           $scope.userSignal.up_down = "up";
           console.log('Sending signal:', $scope.userSignal);
           socket.emit('signal', $scope.userSignal);
-          $scope.userSignal = {};
+          /*
+          var url = 'http://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+alertaRecibida.mercado+'&interval=1min&apikey=4429';
+          console.log(url);
+           $http.get(url).then(function(response){
+            var fbResponse = JSON.parse(response.data);
+                  console.log(fbResponse);
+                  var dateTime = moment($scope.userSignal.fecha).format("YYYY-MM-DD HH:mm:ss");
+                  console.log(dateTime);
+                  $scope.divisanow = fbResponse["Time Series (1min)"]["2017-04-05 20:30:00"]["4. close"];
+                  console.log("Got a response: ", fbResponse["Time Series (1min)"][dateTime]["4. close"] );
+          });
+                 */ 
+           /*       
+          setTimeout(function(){ 
+            var url = 'http://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+alertaRecibida.mercado+'&interval=1min&apikey=4429';
+           
+                  var fbResponse = JSON.parse(body);
+                  var dateTime = moment($scope.userSignal.fecha).format("YYYY-MM-DD HH:mm:ss");
+                  console.log("Got a response: ", fbResponse["Time Series (1min)"][dateTime]["4. close"] );
+
+          }, 3000);*/
+          
         };
         
         $scope.sendSignalDown = function sendSignalDown() {
@@ -97,7 +125,8 @@
           socket.emit('message2', $scope.text);
           $scope.text = '';
         };
-
+        
+        
         $scope.setName = function setName() {
           socket.emit('identify', $scope.name);
         };

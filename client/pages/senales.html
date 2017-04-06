@@ -21,8 +21,8 @@
               </span></a>
                 <a href="" ng-click="sendSignalUp()" class="btn btn-danger" value='up'><span class="glyphicon glyphicon-thumbs-up"></span> sube</a>
               </div>
-                <div class="container ">
-                  <div class="col-sm-2 col-xs-12 col-md- col-lg-2">
+                <div class="row">
+                  <div class="container col-sm-3 col-xs-12 col-md-3 col-lg-3">
                 <div class="form-row">
                   <h5>Importe:</h5>
                   <div class="input-group" > 
@@ -31,7 +31,7 @@
                     </div>
                 </div>
               </div>
-              <div class="col-sm-2 col-xs-12 col-md-2 col-lg-2">
+              <div class="container col-sm-3 col-xs-12 col-md-3 col-lg-3">
                 <h5>Divisa:</h5>
                 <select ng-model="userSignal.mercado"class="form-control">
                   
@@ -46,8 +46,8 @@
                         	<option >BGN</option>
                             </select> 
               </div>
-              <div class="col-sm-2 col-xs-12 col-md-2 col-lg-2">
-                <h5>Cuenta de pago:</h5>
+              <div class="container col-sm-3 col-xs-12 col-md-3 col-lg-3">
+                <h5>Cuenta:</h5>
                 <select ng-model="userSignal.cuenta" class="form-control">
                 	        <option  selected>Paypal</option>
                         	<option>VISA</option>
@@ -55,23 +55,17 @@
                         	<option >E-GOLD</option>
                             </select> 
               </div>
-              <div class="col-sm-2 col-xs-12 col-md-2 col-lg-2">
-                <h5>Hora fin operacion:</h5>
-                          <div class="row">
-                          <div class='col-sm-6'>
-                              <div class="form-group">
-                                  <div class='input-group date'>
-                                      <input type="time" ng-model="userSignal.hora_fin"  value="{{ clock | date:'HH:mm:ss'}}">
-                                      <span class="input-group-addon">
-                                          <span class="glyphicon glyphicon-time"></span>
-                                      </span>
-                                  </div>
-                              </div>
-                          </div>
-                        </div>
+              <div class="container col-sm-3 col-xs-12 col-md-3 col-lg-3">
+                    <div class="form-row">
+                      <h5>minutos:</h5>
+                  <div class="input-group" > 
+                  <span class="input-group-addon" ><span class="glyphicon glyphicon-time"></span></span>
+                      <input type="number" value="100" style="height: 50px;" min="0" step="1" data-number-to-fixed="2" ng-model="userSignal.importe" data-number-stepfactor="100" class="currency form-control" id="c1" />
                     </div>
+                </div>
               </div>
-
+              </div>
+                <br>
               <a href="#" class="btn btn-warning btn-lg btn-block"><span class="glyphicon glyphicon-gbp"> Depósito:</span></a>
             </div>
           </div>
@@ -80,7 +74,7 @@
       </div>
       
       
-      <div class="container-fluid col-sm-5 col-xs-12 col-md-5 col-lg-5" ng-controller="ChatController">
+      <div class="container col-sm-5 col-xs-12 col-md-5 col-lg-5" ng-controller="ChatController">
         
         <div class="row form-group">
           
@@ -104,24 +98,24 @@
                             <th>Ganada</th>
                           </tr>
                           <tr ng-repeat="signal in signals">
-                            <td ng-if="$odd" ng-bind="signal.username" style="background-color:#686868"></td>
-                            <td ng-if="$even"  ng-bind="signal.username"></td>
-                            <td ng-if="$odd"  ng-bind="signal.fecha | date:'HH:mm:ss'" style="background-color:#686868"></td>
-                            <td ng-if="$even"  ng-bind="signal.fecha | date:'dd/MM/yyyy hh:mm:ss'"></td>
+                            <td ng-if="$odd" ng-bind="signal.username" style="background-color:#375A7F"></td>
+                            <td ng-if="$even"  ng-bind="signal.username" style="background-color:#597899"></td>
+                            <td ng-if="$odd"  ng-bind="signal.fecha | date:'HH:mm:ss'" style="background-color:#375A7F"></td>
+                            <td ng-if="$even" style="background-color:#597899" ng-bind="signal.fecha | date:'dd/MM/yyyy hh:mm:ss'"></td>
                             <!--td ng-if="$odd" ng-model="signal.hora_inicio" style="background-color:#686868" ></td>
                             <td ng-if="$even" ng-model="signal.hora_inicio"></td-->
-                            <td ng-if="$odd" ng-bind="signal.hora_fin" style="background-color:#686868"></td>
-                            <td ng-if="$even" ng-bind="signal.hora_fin"></td>
-                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.importe"></td>
-                            <td ng-if="$even" ng-bind="signal.importe"></td>
-                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.mercado"></td>
-                            <td ng-if="$even" ng-bind="signal.mercado"></td>
+                            <td ng-if="$odd"  ng-bind="signal.hora_fin" style="background-color:#375A7F"></td>
+                            <td ng-if="$even" style="background-color:#597899" ng-bind="signal.hora_fin"></td>
+                            <td ng-if="$odd" style="background-color:#375A7F" ng-bind="signal.importe"></td>
+                            <td ng-if="$even" style="background-color:#597899" ng-bind="signal.importe"></td>
+                            <td ng-if="$odd" style="background-color:#375A7F" ng-bind="signal.mercado"></td>
+                            <td ng-if="$even" style="background-color:#597899" ng-bind="signal.mercado"></td>
                             <!--td ng-if="$odd" style="background-color:#686868" ng-bind="signal.cuenta"></td>
                             <td ng-if="$even" ng-bind="signal.cuenta"></td-->
-                            <td ng-if="$odd" style="background-color:#686868" ng-bind="signal.up_down"></td>
-                            <td ng-if="$even"  ng-bind="signal.up_down"></td>
-                            <td ng-if="$odd"  style="background-color:#686868" ng-bind="signal.ganada"></td>
-                            <td ng-if="$even"  ng-bind="signal.ganada"></td>
+                            <td ng-if="$odd" style="background-color:#375A7F" ng-bind="signal.up_down"></td>
+                            <td ng-if="$even" style="background-color:#597899" ng-bind="signal.up_down"></td>
+                            <td ng-if="$odd"  style="background-color:#375A7F" ng-bind="signal.ganada"></td>
+                            <td ng-if="$even" style="background-color:#597899" ng-bind="signal.ganada"></td>
                           </tr>
                         </table> 
                       </div>
@@ -173,7 +167,6 @@
                                 <td ng-bind="msg.name"></td>
                                 <span ng-if="msg.destacado == true" class="bg-danger">
                                   <td ng-bind="msg.text" class="blue" ></td>
-                                  <td ng-bind="msg.destacado" class="blue" ></td>
                                 </span>  
                                 </tr>
                               </tbody>

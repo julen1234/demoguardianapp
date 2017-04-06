@@ -130,6 +130,7 @@ io.on('connection', function (socket) {
 
     socket.on('signal',function(alertaRecibida){
       console.log(alertaRecibida);
+      signals.push(alertaRecibida);
       io.sockets.emit('signal',alertaRecibida);
     });
     
