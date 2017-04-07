@@ -43,6 +43,9 @@
         });
 
         socket.on('message', function (msg) {
+          if(msg.name == $scope.name){
+            msg.derecha=true;
+          }
           $scope.messages.push(msg);
           var audio = new Audio('http://soundbible.com/mp3/sms-alert-1-daniel_simon.mp3');
           audio.volume = 0.1;
